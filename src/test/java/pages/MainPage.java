@@ -10,13 +10,13 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class MainPage {
 
-    public MainPage openPage() {
-        open("ru/global");
-        return this;
-    }
 
     public MainPage clickHeaderFamilyTree() {
         $(".headerNavGroupStyle_h6qlbgz button").click();
+        return this;
+    }
+    public MainPage clickOnAuthorization() {
+        $("div.data-v-03f1fd0e").click();
         return this;
     }
 }
