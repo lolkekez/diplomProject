@@ -1,13 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
-import org.openqa.selenium.Keys;
 import pages.MainPage;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class AuthorizationTest extends BaseTest {
@@ -16,15 +10,11 @@ public class AuthorizationTest extends BaseTest {
 
     @BeforeEach
     void prepareData() {
+
         mainPage.openMainPage()
                 .approveCookieButtonClick()
                 .modalLocationButtonOtherClick()
                 .selectCityButtonClick();
-    }
-
-    @AfterEach
-    void tearDown() {
-        closeWebDriver();
     }
 
     //4ybt2@somoj.com:Warcraft_Goblin331
@@ -38,7 +28,6 @@ public class AuthorizationTest extends BaseTest {
                 .loginConfirmButtonClick()
                 .checkFavouritesHeaderIconVisible()
                 .checkRedirectionProfilePageAfterAuthorization();
-
     }
 
     @Test
@@ -49,7 +38,6 @@ public class AuthorizationTest extends BaseTest {
                 .setFailedInputProfilePassword()
                 .loginConfirmButtonClick()
                 .checkFailedAuthorizationMessageVisible();
-
     }
 
     @Test
@@ -61,7 +49,6 @@ public class AuthorizationTest extends BaseTest {
                 .setUncorrectedInputProfilePassword()
                 .checkEmailFieldShouldBeUncorrectedText()
                 .checkPasswordFieldShouldBeUncorrectedText();
-
     }
 
 }
