@@ -1,6 +1,5 @@
 package tests;
 
-import data.Language;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
@@ -11,6 +10,11 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class MainPageShouldCorrectTextTest extends BaseTest {
+    @Test
+    void mainPageShouldCorrectHeadersTextTest() {
+        open("");
+        $("li.prim-nav__item_0").shouldHave(text("Участники войны"));
+    }
     MainPage mainPage = new MainPage();
 /*
     @Test
@@ -36,12 +40,4 @@ public class MainPageShouldCorrectTextTest extends BaseTest {
         $("h1").shouldHave(text("Find your family.\n" + "Discover yourself."));
     }
 */
-    @Test
-    void mainPageShouldCorrectHeadersTextTest() {
-        open("");
-        $("li.prim-nav__item_0").shouldHave(text("Участники войны"));
-
-    }
-
-    @Test
 }
