@@ -8,7 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.openqa.selenium.Keys;
 import pages.MainPage;
-import pages.components.VerifyAuthorizationResult;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -17,7 +16,6 @@ import static com.codeborne.selenide.Selenide.*;
 public class AuthorizationTest extends BaseTest {
 
     MainPage mainPage = new MainPage();
-    VerifyAuthorizationResult verifyAuthorizationResult = new VerifyAuthorizationResult();
 
     @BeforeEach
     void prepareData() {
