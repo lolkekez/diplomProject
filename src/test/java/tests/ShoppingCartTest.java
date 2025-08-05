@@ -1,6 +1,8 @@
 package tests;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import pages.CatalogPage;
 import pages.MainPage;
 
@@ -20,8 +22,33 @@ public class ShoppingCartTest extends BaseTest {
                 .selectCityButtonClick();
     }
 
+
+    @ParameterizedTest(name = "addItemOnShoppingCartAuthorization{0}Test")
+    @ValueSource(booleans = {true, false})
+    void addItemOnShoppingCarTest(boolean isAuthorized) {
+        if (isAuthorized) {
+            mainPage.profileIconButtonClick()
+                    .setInputProfileEmail("4ybt2@somoj.com")
+                    .setInputProfilePassword("Warcraft_Goblin331")
+                    .loginConfirmButtonClick();
+        }
+
+        mainPage.showCatalogButtonClick();
+
+        catalogPage.headerShoesButtonClick()
+                .firstItemOnCatalogClick()
+                .checkAddCartButtonDisabled()
+                .firstSizeClick()
+                .addCartButtonClick()
+                .checkSuccessAddItemOnCartMessage()
+                .checkNumberItemsInCartBadge();
+
+    }
+}
+
+/*
     @Test
-    void addItemOnShoppingCartWithAuthorizationTest() {
+    void deleteItemOnCartShoppingCartWithAuthorizationTest() {
         mainPage.profileIconButtonClick()
                 .setInputProfileEmail("4ybt2@somoj.com")
                 .setInputProfilePassword("Warcraft_Goblin331")
@@ -35,6 +62,7 @@ public class ShoppingCartTest extends BaseTest {
                 .addCartButtonClick()
                 .checkSuccessAddItemOnCartMessage()
                 .checkNumberItemsInCartBadge();
-
     }
+
 }
+*/

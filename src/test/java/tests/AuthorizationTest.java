@@ -50,5 +50,4 @@ public class AuthorizationTest extends BaseTest {
                 .checkEmailFieldShouldBeUncorrectedText()
                 .checkPasswordFieldShouldBeUncorrectedText();
     }
-
 }

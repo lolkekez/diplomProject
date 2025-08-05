@@ -5,10 +5,13 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import pages.MainPage;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class BaseTest {
+
+    MainPage mainPage = new MainPage();
 
     @BeforeAll
     static void setUp() {
@@ -24,6 +27,14 @@ public class BaseTest {
     void tearDown() {
 
         closeWebDriver();
+    }
+
+    public void prepareAuthorizationTest() {
+
+        mainPage.profileIconButtonClick()
+                .setInputProfileEmail("4ybt2@somoj.com")
+                .setInputProfilePassword("Warcraft_Goblin331")
+                .loginConfirmButtonClick();
     }
 
 }
