@@ -1,25 +1,19 @@
 package pages;
 
-
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
+import com.github.javafaker.Cat;
 import io.qameta.allure.Step;
-import org.openqa.selenium.Keys;
-import utils.DataFaker;
-
-import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CatalogPage {
 
     private final SelenideElement headerShoesButton = $$("label.el-radio-button").findBy(text("ОБУВЬ")),
             addCartButton = $("button[data-v-0f3c88d5]"),
             successAddItemOnCartMessage = $("div.el-message--success"),
+            cartShoppingHeader = $("div.el-badge").$("div.global-icon"),
             numberItemsInCartBadge = $("div.el-badge");
 
     private final ElementsCollection itemsOnCatalog = $$("div.card-search"),
@@ -73,6 +67,13 @@ public class CatalogPage {
     @Step("Проверяем, что появилось отображается нужное кол-во товара в корзине")
     public CatalogPage checkNumberItemsInCartBadge() {
         numberItemsInCartBadge.shouldBe(text("1"));
+
+        return this;
+    }
+
+    @Step
+    public CatalogPage cartShoppingHeadersClick() {
+        cartShoppingHeader.click();
 
         return this;
     }
