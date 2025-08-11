@@ -5,7 +5,8 @@ import pages.MainPage;
 import pages.components.AuthorizationModalComponent;
 import pages.components.CityModalComponent;
 
-public class AuthorizationTest extends BaseTest {
+public class AuthorizationTests extends BaseTest {
+
 
     MainPage mainPage = new MainPage();
     AuthorizationModalComponent authorizationModalComponent = new AuthorizationModalComponent();
@@ -21,22 +22,24 @@ public class AuthorizationTest extends BaseTest {
     }
 
     //4ybt2@somoj.com:Warcraft_Goblin331
-    @Tag("BLOCKER")
+    @Tag("Auth")
     @Test
+    @DisplayName("Успешная авторизация")
     void accessAuthorizationTest() {
 
         mainPage.profileIconButtonClick();
 
-        authorizationModalComponent.setInputProfileModalEmail("4ybt2@somoj.com")
-                .setInputProfileModalPassword("Warcraft_Goblin331")
+        authorizationModalComponent.setInputProfileModalEmail(getLoginAuth)
+                .setInputProfileModalPassword(getPassAuth)
                 .loginConfirmButtonClick();
 
         mainPage.checkFavouritesHeaderIconVisible()
                 .checkRedirectionProfilePageAfterAuthorization();
 }
 
-
+    @Tag("Auth")
     @Test
+    @DisplayName("Не успешная авторизация")
     void failedAuthorizationTest() {
 
         mainPage.profileIconButtonClick();
@@ -47,20 +50,22 @@ public class AuthorizationTest extends BaseTest {
                 .checkFailedAuthorizationMessageVisible();
     }
 
-    /*
-    TO DO:: не работает автотест так как в методе setUncorrectedInputProfilePassword зачистка поля работает с помозью хоткея под винду
+
+    //TO DO:: не работает автотест так как в методе setUncorrectedInputProfilePassword зачистка поля работает с помозью хоткея под винду
+    @Tag("Auth")
     @Test
+    @DisplayName("поля email и password валидируются на введенные данные")
     void validationEmailAndPasswordFieldsOnRegistrationModalTest() {
 
         mainPage.profileIconButtonClick();
 
         authorizationModalComponent.setUncorrectedInputProfileEmail();
 
-        mainPage.checkLoginConfirmButtonDisabled();
+        authorizationModalComponent.checkLoginConfirmButtonDisabled();
 
         authorizationModalComponent.setUncorrectedInputProfilePassword()
                 .checkEmailFieldShouldBeUncorrectedText()
                 .checkPasswordFieldShouldBeUncorrectedText();
     }
-     */
+
 }

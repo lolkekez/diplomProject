@@ -3,10 +3,7 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
-import org.openqa.selenium.Keys;
 import utils.DataFaker;
-
-import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -20,10 +17,6 @@ public class MainPage {
             profileHeaderIconButton = $("div.header__icons").$("span.header__profile-icon"),
             favouritesHeaderIconButton = $("div.header__icons").$("div[data-v-7ced5273]"),
             showCatalogButton = $$("button[data-v-0f3c88d5]").find(text("ПОКАЗАТЬ ВСЕ НОВИНКИ"));
-
-    private final String randomEmail = faker.getRandomEmail(),
-            randomPassword = faker.getRandomPassword(),
-            randomLine = faker.getRandomLine();
 
     @Step("Нажимаем на кнопку подтвердить Cookie")
     public MainPage approveCookieButtonClick() {
@@ -75,16 +68,4 @@ public class MainPage {
 
         return this;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }

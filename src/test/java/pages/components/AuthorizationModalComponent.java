@@ -50,7 +50,7 @@ public class AuthorizationModalComponent {
     @Step("В модальном окне авторизации вводим некорректный password")
     public AuthorizationModalComponent setUncorrectedInputProfilePassword() {
         inputProfileModalPassword.setValue(randomLine);
-        inputProfileModalPassword.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
+        inputProfileModalPassword.sendKeys(Keys.chord(Keys.COMMAND, "a"), Keys.BACK_SPACE);
 
         return this;
     }

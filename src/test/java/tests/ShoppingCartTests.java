@@ -1,6 +1,5 @@
 package tests;
 
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -10,10 +9,7 @@ import pages.MainPage;
 import pages.components.AuthorizationModalComponent;
 import pages.components.CityModalComponent;
 
-import static com.codeborne.selenide.Selenide.closeWebDriver;
-import static io.qameta.allure.Allure.step;
-
-public class ShoppingCartTest extends BaseTest {
+public class ShoppingCartTests extends BaseTest {
 
     MainPage mainPage = new MainPage();
     CatalogPage catalogPage = new CatalogPage();
@@ -29,7 +25,7 @@ public class ShoppingCartTest extends BaseTest {
                         .selectCityButtonClick();
     }
 
-
+    @Tag("Cart")
     @ParameterizedTest(name = "addItemOnShoppingCartAuthorization{0}Test")
     @ValueSource(booleans = {true, false})
     void addItemOnShoppingCarTest(boolean isAuthorized) {
@@ -55,8 +51,8 @@ public class ShoppingCartTest extends BaseTest {
         cartPage.cartDetailsVisible();
     }
 
-
-    @ParameterizedTest(name = "addItemOnShoppingCartAuthorization{0}Test")
+    @Tag("Cart")
+    @ParameterizedTest(name = "deleteItemOnShoppingCartAuthorization{0}Test")
     @ValueSource(booleans = {true, false})
     void deleteItemOnShoppingCarTest(boolean isAuthorized) {
 
@@ -81,4 +77,6 @@ public class ShoppingCartTest extends BaseTest {
 
         cartPage.cartDetailsVisible();
     }
+
+
 }

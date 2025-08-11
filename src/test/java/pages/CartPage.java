@@ -14,7 +14,7 @@ public class CartPage {
 
     @Step("Проверяем, что в корзине есть товар")
     public CartPage cartDetailsVisible() {
-        cartDetails.shouldBe(visible);
+        cartDetails.shouldHave(visible);
 
         return this;
     }
