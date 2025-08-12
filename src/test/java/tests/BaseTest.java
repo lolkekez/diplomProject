@@ -2,14 +2,20 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+
 import config.WebConfig;
 import config.WebDriverProvider;
+
 import io.qameta.allure.selenide.AllureSelenide;
+
 import org.aeonbits.owner.ConfigFactory;
+
 import org.checkerframework.checker.units.qual.A;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+
 import pages.MainPage;
 import pages.components.AuthorizationModalComponent;
 

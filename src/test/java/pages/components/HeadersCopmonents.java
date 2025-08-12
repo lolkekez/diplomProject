@@ -5,6 +5,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Condition.*;
 import io.qameta.allure.Step;
+import pages.CatalogPage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,12 +37,20 @@ public class HeadersCopmonents {
             mobileNumberOnHeader = $("a.header__phone"),
             searchHeaderButton = $$("div.header__icons div.global-icon").get(0),
             searchBlock = $("div.search-block__content"),
-            searchInput = $("input.el-input__inner");
+            searchInput = $("input.el-input__inner"),
+            headerShoesButton = $$("label.el-radio-button").findBy(text("ОБУВЬ"));
 
 
     @Step("Проверяем наличие разделов в заголовках")
     public HeadersCopmonents checkHeadersSection() {
         actualHeadersSectionList.shouldHave(CollectionCondition.texts(getExpectedHeadersSectionList()));
+
+        return this;
+    }
+
+    @Step("Нажимаем на заголовок 'Обувь'")
+    public HeadersCopmonents headerShoesButtonClick() {
+        headerShoesButton.click();
 
         return this;
     }

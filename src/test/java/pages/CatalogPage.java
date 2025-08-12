@@ -5,6 +5,9 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Cat;
 import io.qameta.allure.Step;
+import pages.components.BrandsFilterComponents;
+import pages.components.CategoryFilterComponents;
+import pages.components.SizeFilterComponents;
 
 import java.time.Duration;
 
@@ -13,21 +16,28 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class CatalogPage {
 
-    private final SelenideElement headerShoesButton = $$("label.el-radio-button").findBy(text("ОБУВЬ")),
-            addCartButton = $("button[data-v-0f3c88d5]"),
+    private final SelenideElement addCartButton = $("button[data-v-0f3c88d5]"),
             successAddItemOnCartMessage = $("div.el-message--success"),
             cartShoppingHeader = $("div.el-badge").$("div.global-icon"),
             numberItemsInCartBadge = $("div.el-badge"),
             searchInputFilter = $("input[placeholder='Ищи здесь']"),
             minusItemButton = $$("button.card-cart__button").findBy(text("-")),
-            headersCartEmpty = $$("div.title").findBy(text("Корзина пуста"));
+            headersCartEmpty = $$("div.title").findBy(text("Корзина пуста")),
+            buttonFilterBrands = $$("div.fixed-title").findBy(text("Бренды")),
+            buttonFilterCategory = $$("div.fixed-title").findBy(text("Категория")),
+            buttonFilterSize = $$("div.fixed-title").findBy(text("Размеры"));
+
 
     private final ElementsCollection itemsOnCatalog = $$("div.card-search"),
-            sizes = $$("div.el-radio-group .el-radio-button");
+            sizes = $$("div.el-radio-group .el-radio-button"),
+            listBrandsOnFilter = $$("div.content-container").get(0).$$("div"),
+            listCategoryOnFilter = $$("div.content-container").get(1).$$("div"),
+            listSizeOnFilter = $$("div.content-container").get(2).$$("div");
 
-    @Step("Нажимаем на заголовок 'Обувь'")
-    public CatalogPage headerShoesButtonClick() {
-        headerShoesButton.click();
+
+    @Step("Открываем страницу Каталога")
+    public CatalogPage openPage() {
+        open("https://krosspark.ru/catalog");
 
         return this;
     }
@@ -93,7 +103,53 @@ public class CatalogPage {
 
     @Step("Проверяем, что в каталоге отображаются товары введенные в поиске")
     public CatalogPage checkSearchFindEnteredValue(String query) {
-        itemsOnCatalog.forEach(title -> title.shouldHave(text(query)));
+        //itemsOnCatalog.forEach(title -> title.shouldHave(text(query)));
+        itemsOnCatalog.get(0).shouldBe(visible);
+        for (SelenideElement item : itemsOnCatalog) {
+            item.shouldHave(text(query));
+        }
+
+        return this;
+    }
+
+    @Step("Жмем на кнопку Бренды в фильтрах")
+    public CatalogPage buttonFilterBrandsClick() {
+        buttonFilterBrands.click();
+
+        return this;
+    }
+
+    @Step("Проверяем список брендов")
+    public CatalogPage checkListBrandsOnFilter() {
+        listBrandsOnFilter.shouldHave(CollectionCondition.containExactTextsCaseSensitive((BrandsFilterComponents.ALL)));
+
+        return this;
+    }
+
+    @Step("Жмем на кнопку Категория в фильтрах")
+    public CatalogPage buttonFilterCategoryClick() {
+        buttonFilterCategory.click();
+
+        return this;
+    }
+
+    @Step("Проверяем список категорий")
+    public CatalogPage checkListCategoryOnFilter() {
+        listCategoryOnFilter.shouldHave(CollectionCondition.containExactTextsCaseSensitive((CategoryFilterComponents.ALL)));
+
+        return this;
+    }
+
+    @Step("Жмем на кнопку Размеры в фильтрах")
+    public CatalogPage buttonFilterSizeClick() {
+        buttonFilterSize.click();
+
+        return this;
+    }
+
+    @Step("Проверяем список размеров")
+    public CatalogPage checkListSizeOnFilter() {
+        listSizeOnFilter.shouldHave(CollectionCondition.containExactTextsCaseSensitive((SizeFilterComponents.ALL)));
 
         return this;
     }

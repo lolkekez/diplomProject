@@ -9,6 +9,7 @@ import pages.CatalogPage;
 import pages.MainPage;
 import pages.components.AuthorizationModalComponent;
 import pages.components.CityModalComponent;
+import pages.components.HeadersCopmonents;
 
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
@@ -19,6 +20,7 @@ public class ShoppingCartTests extends BaseTest {
     AuthorizationModalComponent authorizationModalComponent = new AuthorizationModalComponent();
     CityModalComponent cityModalComponent = new CityModalComponent();
     CartPage cartPage = new CartPage();
+    HeadersCopmonents headersCopmonents = new HeadersCopmonents();
 
     @BeforeEach
     void prepareData() {
@@ -49,8 +51,9 @@ public class ShoppingCartTests extends BaseTest {
 
         mainPage.showCatalogButtonClick();
 
-        catalogPage.headerShoesButtonClick()
-                .firstItemOnCatalogClick()
+        headersCopmonents.headerShoesButtonClick();
+
+        catalogPage.firstItemOnCatalogClick()
                 .checkAddCartButtonDisabled()
                 .firstSizeClick()
                 .addCartButtonClick()
@@ -76,8 +79,9 @@ public class ShoppingCartTests extends BaseTest {
 
         mainPage.showCatalogButtonClick();
 
-        catalogPage.headerShoesButtonClick()
-                .firstItemOnCatalogClick()
+        headersCopmonents.headerShoesButtonClick();
+
+        catalogPage.firstItemOnCatalogClick()
                 .checkAddCartButtonDisabled()
                 .firstSizeClick()
                 .addCartButtonClick()

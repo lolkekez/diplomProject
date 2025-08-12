@@ -1,29 +1,26 @@
 package tests;
 
 import com.codeborne.selenide.WebDriverRunner;
+
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+
 import pages.CatalogPage;
 import pages.MainPage;
 import pages.components.CityModalComponent;
-import pages.components.HeadersCopmonents;
-import com.codeborne.selenide.Configuration;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 
-public class SearchTests extends BaseTest {
+public class FilterOnCatalogTest extends BaseTest{
+
     MainPage mainPage = new MainPage();
     CityModalComponent cityModalComponent = new CityModalComponent();
-    HeadersCopmonents headersCopmonents = new HeadersCopmonents();
     CatalogPage catalogPage = new CatalogPage();
 
     @BeforeEach
     void prepareData() {
-        mainPage.openMainPage();
+        catalogPage.openPage();
         mainPage.approveCookieButtonClick();
         cityModalComponent.modalLocationButtonOtherClick()
                 .selectCityButtonClick();
@@ -35,14 +32,24 @@ public class SearchTests extends BaseTest {
         executeJavaScript("window.localStorage.clear(); window.sessionStorage.clear();");
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"Кроссовки", "Футболка", "Ремень"})
-    void searchTest(String query) {
-        headersCopmonents.searchHeaderButtonClick()
-                .checkSearchBlockShouldBeVisible()
-                .insertValueOnSearchInput(query);
+    @Test
+    void filterBrandsOptionsTest() {
+        catalogPage.buttonFilterBrandsClick()
+                .checkListBrandsOnFilter();
 
-        catalogPage.checkValueOnSearchInput(query)
-                .checkSearchFindEnteredValue(query);
+    }
+
+    @Test
+    void filterCategoryOptionsTest() {
+        catalogPage.buttonFilterCategoryClick()
+                .checkListCategoryOnFilter();
+
+    }
+
+    @Test
+    void filterSizeOptionsTest() {
+        catalogPage.buttonFilterSizeClick()
+                .checkListSizeOnFilter();
+
     }
 }

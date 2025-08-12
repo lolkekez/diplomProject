@@ -75,24 +75,28 @@ public class MainPage {
         return this;
     }
 
+    @Step("Открываем таб 'Новинки'")
     public MainPage tabNewItemClick() {
         tabNewItem.click();
 
         return this;
     }
 
+    @Step("Открываем таб 'Хиты продаж'")
     public MainPage tabBestSellersClick() {
         tabBestSellers.click();
 
         return this;
     }
 
+    @Step("Открываем таб 'Скидки'")
     public MainPage tabSaleClick() {
         tabSale.click();
 
         return this;
     }
 
+    @Step("Проверяем наличие лейбла 'Распродажа' на карточке товара")
     public MainPage checkLabelItemsWithSale() {
         labelOnItemCardForSale.get(0).shouldBe(visible);
         for (SelenideElement labelOnItem : labelOnItemCardForSale) {
@@ -102,6 +106,7 @@ public class MainPage {
         return this;
     }
 
+    @Step("Проверяем наличие лейбла 'Хит-продаж' на карточке товара")
     public MainPage checkLabelItemsWithBestSellers() {
         labelsOnItemCard.get(0).shouldBe(visible);
         for (SelenideElement labelOnItem : labelsOnItemCard) {
@@ -111,6 +116,7 @@ public class MainPage {
         return this;
     }
 
+    @Step("Проверяем наличие лейбла 'Новинка' на карточке товара")
     public MainPage checkLabelItemsWithNewItem() {
         labelsOnItemCard.get(0).shouldBe(visible);
         for (SelenideElement labelOnItem : labelsOnItemCard) {
@@ -119,6 +125,4 @@ public class MainPage {
 
         return this;
     }
-
-
 }
