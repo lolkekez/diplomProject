@@ -1,5 +1,6 @@
 package tests;
 
+import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -8,6 +9,8 @@ import pages.CatalogPage;
 import pages.MainPage;
 import pages.components.AuthorizationModalComponent;
 import pages.components.CityModalComponent;
+
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class ShoppingCartTests extends BaseTest {
 
@@ -23,6 +26,12 @@ public class ShoppingCartTests extends BaseTest {
                 .approveCookieButtonClick();
         cityModalComponent.modalLocationButtonOtherClick()
                         .selectCityButtonClick();
+    }
+
+    @AfterEach
+    void clearSessionStorage() {
+        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
+        executeJavaScript("window.localStorage.clear(); window.sessionStorage.clear();");
     }
 
     @Tag("Cart")
@@ -46,7 +55,8 @@ public class ShoppingCartTests extends BaseTest {
                 .firstSizeClick()
                 .addCartButtonClick()
                 .checkSuccessAddItemOnCartMessage()
-                .checkNumberItemsInCartBadge();
+                .checkNumberItemsInCartBadge()
+                .cartShoppingHeadersClick();
 
         cartPage.cartDetailsVisible();
     }
@@ -75,8 +85,8 @@ public class ShoppingCartTests extends BaseTest {
                 .checkNumberItemsInCartBadge()
                 .cartShoppingHeadersClick();
 
-        cartPage.cartDetailsVisible();
+        cartPage.cartDetailsVisible()
+                .minusItemButtonClick()
+                .checkCartIsEmpty();
     }
-
-
 }

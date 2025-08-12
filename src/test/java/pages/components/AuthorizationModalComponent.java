@@ -78,14 +78,14 @@ public class AuthorizationModalComponent {
 
     @Step("Проверяем, что появилось сообщение 'Пожалуйста введите корректный email'")
     public AuthorizationModalComponent checkEmailFieldShouldBeUncorrectedText() {
-        uncorrectedEmailModalText.shouldBe(text("Пожалуйста введите корректный email"));
+        uncorrectedEmailModalText.shouldHave(text("Пожалуйста введите корректный email"));
 
         return this;
     }
 
     @Step("Проверяем, что появилось сообщение 'Это поле обязательно для заполнения'")
     public AuthorizationModalComponent checkPasswordFieldShouldBeUncorrectedText() {
-        uncorrectedPasswordModalText.shouldBe(text("Это поле обязательно для заполнения"), Duration.ofSeconds(10));
+        uncorrectedPasswordModalText.shouldHave(text("Это поле обязательно для заполнения"), Duration.ofSeconds(10));
 
         return this;
     }
@@ -100,7 +100,7 @@ public class AuthorizationModalComponent {
     @Step("Проверяем, что появился message о неккоректном вводе данных")
     public AuthorizationModalComponent checkFailedAuthorizationMessageVisible() {
         failedAuthorizationMessage.shouldBe(visible, Duration.ofSeconds(2));
-        failedAuthorizationMessage.shouldBe(text("Неверные данные для входа"));
+        failedAuthorizationMessage.shouldHave(text("Неверные данные для входа"));
 
         return this;
     }

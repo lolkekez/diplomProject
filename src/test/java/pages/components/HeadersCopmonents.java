@@ -33,34 +33,60 @@ public class HeadersCopmonents {
             actualHeadersFaqAndProgramLoyalList = $$("div.header__top div.header__link");
 
     private final SelenideElement cityHeader = $("div.header__location"),
-            mobileNumberOnHeader = $("a.header__phone");
+            mobileNumberOnHeader = $("a.header__phone"),
+            searchHeaderButton = $$("div.header__icons div.global-icon").get(0),
+            searchBlock = $("div.search-block__content"),
+            searchInput = $("input.el-input__inner");
 
 
     @Step("Проверяем наличие разделов в заголовках")
     public HeadersCopmonents checkHeadersSection() {
-        actualHeadersSectionList.shouldBe(CollectionCondition.texts(getExpectedHeadersSectionList()));
+        actualHeadersSectionList.shouldHave(CollectionCondition.texts(getExpectedHeadersSectionList()));
 
         return this;
     }
 
     @Step("Проверяем наличие кнопок faq и программы лояльности")
     public HeadersCopmonents checkFaqAndProgramLoyalOnHeader() {
-        actualHeadersFaqAndProgramLoyalList.shouldBe(CollectionCondition.texts(getExpectedHeadersQAandProgramLoyalList()));
+        actualHeadersFaqAndProgramLoyalList.shouldHave(CollectionCondition.texts(getExpectedHeadersQAandProgramLoyalList()));
 
         return this;
     }
 
     @Step("Проверяем наличие города в заголовках")
     public HeadersCopmonents checkCityOnHeader() {
-        cityHeader.shouldBe(text("Москва"));
+        cityHeader.shouldHave(text("Москва"));
 
         return this;
     }
 
     @Step("Проверяем наличие контактного номера на страница")
     public HeadersCopmonents checkMobileNumberOnHeader() {
-        mobileNumberOnHeader.shouldBe(text("+7 (995) 568-50-58"));
+        mobileNumberOnHeader.shouldHave(text("+7 (995) 568-50-58"));
 
         return this;
     }
+
+    @Step("Жмем на кнопку поиска")
+    public HeadersCopmonents searchHeaderButtonClick() {
+        searchHeaderButton.click();
+
+        return this;
+    }
+
+    @Step("Проверяем наличие блока поиска")
+    public HeadersCopmonents checkSearchBlockShouldBeVisible() {
+        searchBlock.shouldBe(visible);
+
+        return this;
+    }
+
+    @Step("Вводим в поле поиска значение")
+    public HeadersCopmonents insertValueOnSearchInput(String value) {
+        searchInput.setValue(value).pressEnter();
+
+        return this;
+    }
+
+
 }
