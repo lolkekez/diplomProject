@@ -1,9 +1,12 @@
 package tests;
 
+import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
 import pages.MainPage;
 import pages.components.AuthorizationModalComponent;
 import pages.components.CityModalComponent;
+
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class AuthorizationTests extends BaseTest {
 
@@ -19,6 +22,12 @@ public class AuthorizationTests extends BaseTest {
                 .approveCookieButtonClick();
         cityModalComponent.modalLocationButtonOtherClick()
                 .selectCityButtonClick();
+    }
+
+    @AfterEach
+    void clearSessionStorage() {
+        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
+        executeJavaScript("window.localStorage.clear(); window.sessionStorage.clear();");
     }
 
     //4ybt2@somoj.com:Warcraft_Goblin331

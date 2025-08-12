@@ -1,9 +1,12 @@
 package tests;
 
+import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
 import pages.MainPage;
 import pages.components.CityModalComponent;
 import pages.components.HeadersCopmonents;
+
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class MainPageTests extends BaseTest {
 
@@ -17,6 +20,12 @@ public class MainPageTests extends BaseTest {
                 .approveCookieButtonClick();
         cityModalComponent.modalLocationButtonOtherClick()
                 .selectCityButtonClick();
+    }
+
+    @AfterEach
+    void clearSessionStorage() {
+        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
+        executeJavaScript("window.localStorage.clear(); window.sessionStorage.clear();");
     }
 
     @Test

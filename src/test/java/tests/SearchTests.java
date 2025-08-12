@@ -38,15 +38,12 @@ public class SearchTests extends BaseTest {
     @ParameterizedTest
     @ValueSource(strings = {"Футболка", "Кроссовки"})
     void searchTest(String query) {
-        headersCopmonents.searchHeaderButtonClick();
+        headersCopmonents.searchHeaderButtonClick()
+                .checkSearchBlockShouldBeVisible()
+                .insertValueOnSearchInput(query);
 
-        headersCopmonents.checkSearchBlockShouldBeVisible();
-
-        headersCopmonents.insertValueOnSearchInput(query);
-
-        catalogPage.checkValueOnSearchInput(query);
-
-        catalogPage.checkSearchFindEnteredValue(query);
+        catalogPage.checkValueOnSearchInput(query)
+                .checkSearchFindEnteredValue(query);
 
     }
 }
