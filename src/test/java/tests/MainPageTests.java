@@ -29,12 +29,13 @@ public class MainPageTests extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверяем наличие заголовков на странице")
-    void headersMainPageCheckWithComponentsTest() {
-        headersCopmonents.checkHeadersSection()
-                .checkFaqAndProgramLoyalOnHeader()
-                .checkCityOnHeader()
-                .checkMobileNumberOnHeader();
+    @DisplayName("Отображение лейбла на карточке товара в зависимости от таба")
+    void displayLabelOnProductCardDependingOnTabTest() {
+        mainPage.tabNewItemClick()
+                .checkLabelItemsWithNewItem()
+                .tabBestSellersClick()
+                .checkLabelItemsWithBestSellers()
+                .tabSaleClick()
+                .checkLabelItemsWithSale();
     }
-
 }

@@ -36,7 +36,7 @@ public class SearchTests extends BaseTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"Футболка", "Кроссовки"})
+    @ValueSource(strings = {"цуауца", "Кроссовки"})
     void searchTest(String query) {
         headersCopmonents.searchHeaderButtonClick()
                 .checkSearchBlockShouldBeVisible()
@@ -44,6 +44,5 @@ public class SearchTests extends BaseTest {
 
         catalogPage.checkValueOnSearchInput(query)
                 .checkSearchFindEnteredValue(query);
-
     }
 }

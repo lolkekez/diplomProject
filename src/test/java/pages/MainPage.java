@@ -1,7 +1,7 @@
 package pages;
 
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.*;
+import com.mifmif.common.regex.Main;
 import io.qameta.allure.Step;
 import utils.DataFaker;
 
@@ -16,7 +16,13 @@ public class MainPage {
     private final SelenideElement approveCookieButton = $("div.modal button"),
             profileHeaderIconButton = $("div.header__icons").$("span.header__profile-icon"),
             favouritesHeaderIconButton = $("div.header__icons").$("div[data-v-7ced5273]"),
-            showCatalogButton = $$("button[data-v-0f3c88d5]").find(text("ПОКАЗАТЬ ВСЕ НОВИНКИ"));
+            showCatalogButton = $$("button[data-v-0f3c88d5]").find(text("ПОКАЗАТЬ ВСЕ НОВИНКИ")),
+            tabNewItem = $$("label.el-radio-button").findBy(text("Новинки")),
+            tabBestSellers = $$("label.el-radio-button").findBy(text("Хиты продаж")),
+            tabSale =  $$("label.el-radio-button").findBy(text("Распродажа"));
+
+    private final ElementsCollection labelsOnItemCard = $$("div.product-slider-grid__row div.status-block"),
+            labelOnItemCardForSale = $$("card-catalog__content");
 
     @Step("Нажимаем на кнопку подтвердить Cookie")
     public MainPage approveCookieButtonClick() {
@@ -68,4 +74,51 @@ public class MainPage {
 
         return this;
     }
+
+    public MainPage tabNewItemClick() {
+        tabNewItem.click();
+
+        return this;
+    }
+
+    public MainPage tabBestSellersClick() {
+        tabBestSellers.click();
+
+        return this;
+    }
+
+    public MainPage tabSaleClick() {
+        tabSale.click();
+
+        return this;
+    }
+
+    public MainPage checkLabelItemsWithSale() {
+        labelOnItemCardForSale.get(0).shouldBe(visible);
+        for (SelenideElement labelOnItem : labelOnItemCardForSale) {
+            labelOnItem.shouldBe(visible).shouldHave(text("Распродажа"));
+        }
+
+        return this;
+    }
+
+    public MainPage checkLabelItemsWithBestSellers() {
+        labelsOnItemCard.get(0).shouldBe(visible);
+        for (SelenideElement labelOnItem : labelsOnItemCard) {
+            labelOnItem.shouldHave(text("Хит-продаж"));
+        }
+
+        return this;
+    }
+
+    public MainPage checkLabelItemsWithNewItem() {
+        labelsOnItemCard.get(0).shouldBe(visible);
+        for (SelenideElement labelOnItem : labelsOnItemCard) {
+            labelOnItem.shouldHave(text("Новинка"));
+        }
+
+        return this;
+    }
+
+
 }

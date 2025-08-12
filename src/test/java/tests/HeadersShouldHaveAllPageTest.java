@@ -31,8 +31,8 @@ public class HeadersShouldHaveAllPageTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Проверяем наличие заголовков на всех страницах")
-    void headersMainPageCheckTest() {
+    @DisplayName("Отображение заголовков на всех страницах")
+    void displayingHeadingsOnAllPagesTest() {
 
         step("Проверяем заголовки на главное странице", () -> {
             headersCopmonents.checkHeadersSection()

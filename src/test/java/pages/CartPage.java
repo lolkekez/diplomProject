@@ -10,7 +10,6 @@ import static com.codeborne.selenide.Selenide.*;
 public class CartPage {
 
     private final SelenideElement cartDetails = $("div.card-cart"),
-            deleteCartButton = $("button.card-cart__delete"),
             minusItemButton = $$("button.card-cart__button").findBy(text("-")),
             headersCartEmpty = $$("div.title").findBy(text("Корзина пуста"));
 
@@ -20,14 +19,6 @@ public class CartPage {
 
         return this;
     }
-
-    @Step("Удаляем товар из корзины")
-    public CartPage cartDetailsDelete() {
-        deleteCartButton.click();
-
-        return this;
-    }
-
 
     @Step("Нажимаем на кнопку '-' в корзине")
     public CartPage minusItemButtonClick() {

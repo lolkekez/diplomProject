@@ -34,7 +34,7 @@ public class AuthorizationTests extends BaseTest {
     @Tag("Auth")
     @Test
     @DisplayName("Успешная авторизация")
-    void accessAuthorizationTest() {
+    void successfulAuthorizationTest() {
 
         mainPage.profileIconButtonClick();
 
