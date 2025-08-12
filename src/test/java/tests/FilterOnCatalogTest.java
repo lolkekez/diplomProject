@@ -4,11 +4,12 @@ import com.codeborne.selenide.WebDriverRunner;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import pages.CatalogPage;
 import pages.MainPage;
-import pages.components.CityModalComponent;
+import pages.components.modal.CityModalComponent;
 
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
@@ -33,23 +34,21 @@ public class FilterOnCatalogTest extends BaseTest{
     }
 
     @Test
-    void filterBrandsOptionsTest() {
+    void allFilterOptionsTest() {
         catalogPage.buttonFilterBrandsClick()
-                .checkListBrandsOnFilter();
-
+                .checkListBrandsOnFilter()
+                .buttonFilterSizeClick()
+                .checkListSizeOnFilter()
+                .buttonFilterCategoryClick()
+                .checkListCategoryOnFilter()
+                .buttonFilterSeasonClick()
+                .checkListSeasonOnFilter()
+                .buttonFilterShopClick()
+                .checkListShopOnFilter()
+                .buttonFilterColorClick()
+                .checkListColorOnFilter();
     }
 
-    @Test
-    void filterCategoryOptionsTest() {
-        catalogPage.buttonFilterCategoryClick()
-                .checkListCategoryOnFilter();
 
-    }
 
-    @Test
-    void filterSizeOptionsTest() {
-        catalogPage.buttonFilterSizeClick()
-                .checkListSizeOnFilter();
-
-    }
 }

@@ -1,8 +1,8 @@
-package pages.components;
+package pages.components.filter;
 
 import java.util.List;
 
-public class BrandsFilterComponents {
+public class BrandsFilterComponent {
     public static final List<String> ALL = List.of(
             "2000 Archives",
             "ASICS",

@@ -3,11 +3,8 @@ package pages;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import com.github.javafaker.Cat;
 import io.qameta.allure.Step;
-import pages.components.BrandsFilterComponents;
-import pages.components.CategoryFilterComponents;
-import pages.components.SizeFilterComponents;
+import pages.components.filter.*;
 
 import java.time.Duration;
 
@@ -21,18 +18,22 @@ public class CatalogPage {
             cartShoppingHeader = $("div.el-badge").$("div.global-icon"),
             numberItemsInCartBadge = $("div.el-badge"),
             searchInputFilter = $("input[placeholder='Ищи здесь']"),
-            minusItemButton = $$("button.card-cart__button").findBy(text("-")),
-            headersCartEmpty = $$("div.title").findBy(text("Корзина пуста")),
             buttonFilterBrands = $$("div.fixed-title").findBy(text("Бренды")),
             buttonFilterCategory = $$("div.fixed-title").findBy(text("Категория")),
-            buttonFilterSize = $$("div.fixed-title").findBy(text("Размеры"));
+            buttonFilterSize = $$("div.fixed-title").findBy(text("Размеры")),
+            buttonFilterSeason = $$("div.fixed-title").findBy(text("Сезон")),
+            buttonFilterShop = $$("div.fixed-title").findBy(text("Магазины")),
+            buttonFilterColor = $$("div.fixed-title").findBy(text("Цвет"));
 
 
     private final ElementsCollection itemsOnCatalog = $$("div.card-search"),
             sizes = $$("div.el-radio-group .el-radio-button"),
             listBrandsOnFilter = $$("div.content-container").get(0).$$("div"),
             listCategoryOnFilter = $$("div.content-container").get(1).$$("div"),
-            listSizeOnFilter = $$("div.content-container").get(2).$$("div");
+            listSizeOnFilter = $$("div.content-container").get(2).$$("div"),
+            listSeasonOnFilter = $$("div.content-container").get(3).$$("div"),
+            listShopOnFilter = $$("div.content-container").get(4).$$("div"),
+            listColorOnFilter = $$("div.content-container").get(5).$$("div");
 
 
     @Step("Открываем страницу Каталога")
@@ -121,7 +122,7 @@ public class CatalogPage {
 
     @Step("Проверяем список брендов")
     public CatalogPage checkListBrandsOnFilter() {
-        listBrandsOnFilter.shouldHave(CollectionCondition.containExactTextsCaseSensitive((BrandsFilterComponents.ALL)));
+        listBrandsOnFilter.shouldHave(CollectionCondition.containExactTextsCaseSensitive((BrandsFilterComponent.ALL)));
 
         return this;
     }
@@ -135,7 +136,7 @@ public class CatalogPage {
 
     @Step("Проверяем список категорий")
     public CatalogPage checkListCategoryOnFilter() {
-        listCategoryOnFilter.shouldHave(CollectionCondition.containExactTextsCaseSensitive((CategoryFilterComponents.ALL)));
+        listCategoryOnFilter.shouldHave(CollectionCondition.containExactTextsCaseSensitive((CategoryFilterComponent.ALL)));
 
         return this;
     }
@@ -149,7 +150,49 @@ public class CatalogPage {
 
     @Step("Проверяем список размеров")
     public CatalogPage checkListSizeOnFilter() {
-        listSizeOnFilter.shouldHave(CollectionCondition.containExactTextsCaseSensitive((SizeFilterComponents.ALL)));
+        listSizeOnFilter.shouldHave(CollectionCondition.containExactTextsCaseSensitive((SizeFilterComponent.ALL)));
+
+        return this;
+    }
+
+    @Step("Жмем на кнопку Сезон в фильтрах")
+    public CatalogPage buttonFilterSeasonClick() {
+        buttonFilterSeason.click();
+
+        return this;
+    }
+
+    @Step("Проверяем список сезонов")
+    public CatalogPage checkListSeasonOnFilter() {
+        listSeasonOnFilter.shouldHave(CollectionCondition.containExactTextsCaseSensitive((SeasonFilterComponent.ALL)));
+
+        return this;
+    }
+
+    @Step("Жмем на кнопку Магазин в фильтрах")
+    public CatalogPage buttonFilterShopClick() {
+        buttonFilterShop.click();
+
+        return this;
+    }
+
+    @Step("Проверяем список Магазинов")
+    public CatalogPage checkListShopOnFilter() {
+        listShopOnFilter.shouldHave(CollectionCondition.containExactTextsCaseSensitive((ShopFilterComponent.ALL)));
+
+        return this;
+    }
+
+    @Step("Жмем на кнопку Цвет в фильтрах")
+    public CatalogPage buttonFilterColorClick() {
+        buttonFilterColor.click();
+
+        return this;
+    }
+
+    @Step("Проверяем список цветов")
+    public CatalogPage checkListColorOnFilter() {
+        listColorOnFilter.shouldHave(CollectionCondition.containExactTextsCaseSensitive((ColorFilterComponent.ALL)));
 
         return this;
     }

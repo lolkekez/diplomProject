@@ -3,8 +3,8 @@ package tests;
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
 import pages.MainPage;
-import pages.components.CityModalComponent;
-import pages.components.HeadersCopmonents;
+import pages.components.modal.CityModalComponent;
+import pages.components.modal.HeadersCopmonent;
 
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
@@ -12,7 +12,7 @@ public class MainPageTests extends BaseTest {
 
     MainPage mainPage = new MainPage();
     CityModalComponent cityModalComponent = new CityModalComponent();
-    HeadersCopmonents headersCopmonents = new HeadersCopmonents();
+    HeadersCopmonent headersCopmonent = new HeadersCopmonent();
 
     @BeforeEach
     void prepareData() {

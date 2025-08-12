@@ -22,7 +22,8 @@ public class MainPage {
             tabSale =  $$("label.el-radio-button").findBy(text("Распродажа"));
 
     private final ElementsCollection labelsOnItemCard = $$("div.product-slider-grid__row div.status-block"),
-            labelOnItemCardForSale = $$("card-catalog__content");
+            labelOnItemCardForSale = $$("div.card-catalog__content");
+
 
     @Step("Нажимаем на кнопку подтвердить Cookie")
     public MainPage approveCookieButtonClick() {

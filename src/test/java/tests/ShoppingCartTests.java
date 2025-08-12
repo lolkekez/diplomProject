@@ -7,9 +7,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 import pages.CartPage;
 import pages.CatalogPage;
 import pages.MainPage;
-import pages.components.AuthorizationModalComponent;
-import pages.components.CityModalComponent;
-import pages.components.HeadersCopmonents;
+import pages.components.modal.AuthorizationModalComponent;
+import pages.components.modal.CityModalComponent;
+import pages.components.modal.HeadersCopmonent;
 
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
@@ -20,7 +20,7 @@ public class ShoppingCartTests extends BaseTest {
     AuthorizationModalComponent authorizationModalComponent = new AuthorizationModalComponent();
     CityModalComponent cityModalComponent = new CityModalComponent();
     CartPage cartPage = new CartPage();
-    HeadersCopmonents headersCopmonents = new HeadersCopmonents();
+    HeadersCopmonent headersCopmonent = new HeadersCopmonent();
 
     @BeforeEach
     void prepareData() {
@@ -51,7 +51,7 @@ public class ShoppingCartTests extends BaseTest {
 
         mainPage.showCatalogButtonClick();
 
-        headersCopmonents.headerShoesButtonClick();
+        headersCopmonent.headerShoesButtonClick();
 
         catalogPage.firstItemOnCatalogClick()
                 .checkAddCartButtonDisabled()
@@ -79,7 +79,7 @@ public class ShoppingCartTests extends BaseTest {
 
         mainPage.showCatalogButtonClick();
 
-        headersCopmonents.headerShoesButtonClick();
+        headersCopmonent.headerShoesButtonClick();
 
         catalogPage.firstItemOnCatalogClick()
                 .checkAddCartButtonDisabled()

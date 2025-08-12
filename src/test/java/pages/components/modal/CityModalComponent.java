@@ -1,12 +1,9 @@
-package pages.components;
+package pages.components.modal;
 
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
-import org.openqa.selenium.Keys;
 import pages.MainPage;
-import utils.DataFaker;
-import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 

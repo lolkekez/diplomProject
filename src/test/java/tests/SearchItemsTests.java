@@ -2,23 +2,20 @@ package tests;
 
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import pages.CatalogPage;
 import pages.MainPage;
-import pages.components.CityModalComponent;
-import pages.components.HeadersCopmonents;
-import com.codeborne.selenide.Configuration;
+import pages.components.modal.CityModalComponent;
+import pages.components.modal.HeadersCopmonent;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class SearchTests extends BaseTest {
+public class SearchItemsTests extends BaseTest {
     MainPage mainPage = new MainPage();
     CityModalComponent cityModalComponent = new CityModalComponent();
-    HeadersCopmonents headersCopmonents = new HeadersCopmonents();
+    HeadersCopmonent headersCopmonent = new HeadersCopmonent();
     CatalogPage catalogPage = new CatalogPage();
 
     @BeforeEach
@@ -38,7 +35,7 @@ public class SearchTests extends BaseTest {
     @ParameterizedTest
     @ValueSource(strings = {"Кроссовки", "Футболка", "Ремень"})
     void searchTest(String query) {
-        headersCopmonents.searchHeaderButtonClick()
+        headersCopmonent.searchHeaderButtonClick()
                 .checkSearchBlockShouldBeVisible()
                 .insertValueOnSearchInput(query);
 

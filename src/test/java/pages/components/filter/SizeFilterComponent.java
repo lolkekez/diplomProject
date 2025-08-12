@@ -1,8 +1,8 @@
-package pages.components;
+package pages.components.filter;
 
 import java.util.List;
 
-public class SizeFilterComponents {
+public class SizeFilterComponent {
     public static final List<String> ALL = List.of(
             "49",
             "48",

@@ -3,8 +3,8 @@ package tests;
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
 import pages.MainPage;
-import pages.components.CityModalComponent;
-import pages.components.HeadersCopmonents;
+import pages.components.modal.CityModalComponent;
+import pages.components.modal.HeadersCopmonent;
 
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static com.codeborne.selenide.Selenide.open;
@@ -14,7 +14,7 @@ public class HeadersShouldHaveAllPageTest extends BaseTest {
 
     MainPage mainPage = new MainPage();
     CityModalComponent cityModalComponent = new CityModalComponent();
-    HeadersCopmonents headersCopmonents = new HeadersCopmonents();
+    HeadersCopmonent headersCopmonent = new HeadersCopmonent();
 
     @BeforeEach
     void prepareData() {
@@ -35,7 +35,7 @@ public class HeadersShouldHaveAllPageTest extends BaseTest {
     void displayingHeadingsOnAllPagesTest() {
 
         step("Проверяем заголовки на главное странице", () -> {
-            headersCopmonents.checkHeadersSection()
+            headersCopmonent.checkHeadersSection()
                     .checkFaqAndProgramLoyalOnHeader()
                     .checkCityOnHeader()
                     .checkMobileNumberOnHeader();
@@ -43,7 +43,7 @@ public class HeadersShouldHaveAllPageTest extends BaseTest {
 
         step("Проверяем заголовки на странице корзины", () -> {
             open("/cart");
-            headersCopmonents.checkHeadersSection()
+            headersCopmonent.checkHeadersSection()
                     .checkFaqAndProgramLoyalOnHeader()
                     .checkCityOnHeader()
                     .checkMobileNumberOnHeader();
@@ -51,7 +51,7 @@ public class HeadersShouldHaveAllPageTest extends BaseTest {
 
         step("Проверяем заголовки на странице каталога", () -> {
             open("/catalog");
-            headersCopmonents.checkHeadersSection()
+            headersCopmonent.checkHeadersSection()
                     .checkFaqAndProgramLoyalOnHeader()
                     .checkCityOnHeader()
                     .checkMobileNumberOnHeader();
@@ -59,7 +59,7 @@ public class HeadersShouldHaveAllPageTest extends BaseTest {
 
         step("Проверяем заголовки на странице новости", () -> {
             open("/news");
-            headersCopmonents.checkHeadersSection()
+            headersCopmonent.checkHeadersSection()
                     .checkFaqAndProgramLoyalOnHeader()
                     .checkCityOnHeader()
                     .checkMobileNumberOnHeader();
