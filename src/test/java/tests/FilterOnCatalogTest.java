@@ -34,6 +34,7 @@ public class FilterOnCatalogTest extends BaseTest{
     }
 
     @Test
+    @DisplayName("Проверяем список выбора в фильтрах")
     void allFilterOptionsTest() {
         catalogPage.buttonFilterBrandsClick()
                 .checkListBrandsOnFilter()
@@ -48,7 +49,4 @@ public class FilterOnCatalogTest extends BaseTest{
                 .buttonFilterColorClick()
                 .checkListColorOnFilter();
     }
-
-
-
 }

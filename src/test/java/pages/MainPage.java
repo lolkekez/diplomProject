@@ -5,6 +5,8 @@ import com.mifmif.common.regex.Main;
 import io.qameta.allure.Step;
 import utils.DataFaker;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -99,9 +101,9 @@ public class MainPage {
 
     @Step("Проверяем наличие лейбла 'Распродажа' на карточке товара")
     public MainPage checkLabelItemsWithSale() {
-        labelOnItemCardForSale.get(0).shouldBe(visible);
-        for (SelenideElement labelOnItem : labelOnItemCardForSale) {
-            labelOnItem.shouldBe(visible).shouldHave(text("Распродажа"));
+       labelOnItemCardForSale.get(0).shouldBe(visible, Duration.ofSeconds(5000)).shouldHave(text("Распродажа"));
+        for (SelenideElement labelOnItem : labelsOnItemCard) {
+            labelOnItem.shouldHave(text("Распродажа"));
         }
 
         return this;
@@ -109,7 +111,7 @@ public class MainPage {
 
     @Step("Проверяем наличие лейбла 'Хит-продаж' на карточке товара")
     public MainPage checkLabelItemsWithBestSellers() {
-        labelsOnItemCard.get(0).shouldBe(visible);
+        labelsOnItemCard.get(0).shouldBe(visible, Duration.ofSeconds(5000)).shouldHave(text("Хит-продаж"));
         for (SelenideElement labelOnItem : labelsOnItemCard) {
             labelOnItem.shouldHave(text("Хит-продаж"));
         }
@@ -119,7 +121,7 @@ public class MainPage {
 
     @Step("Проверяем наличие лейбла 'Новинка' на карточке товара")
     public MainPage checkLabelItemsWithNewItem() {
-        labelsOnItemCard.get(0).shouldBe(visible);
+        labelsOnItemCard.get(0).shouldBe(visible, Duration.ofSeconds(5000)).shouldHave(text("Новинка"));
         for (SelenideElement labelOnItem : labelsOnItemCard) {
             labelOnItem.shouldHave(text("Новинка"));
         }

@@ -33,9 +33,9 @@ public class MainPageTests extends BaseTest {
     void displayLabelOnProductCardDependingOnTabTest() {
         mainPage.tabNewItemClick()
                 .checkLabelItemsWithNewItem()
-                .tabBestSellersClick()
-                .checkLabelItemsWithBestSellers()
                 .tabSaleClick()
-                .checkLabelItemsWithSale();
+                .checkLabelItemsWithSale()
+                .tabBestSellersClick()
+                .checkLabelItemsWithBestSellers();
     }
 }

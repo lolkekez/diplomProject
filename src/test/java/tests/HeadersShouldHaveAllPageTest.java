@@ -42,7 +42,7 @@ public class HeadersShouldHaveAllPageTest extends BaseTest {
         });
 
         step("Проверяем заголовки на странице корзины", () -> {
-            open("/cart");
+            open("cart");
             headersCopmonent.checkHeadersSection()
                     .checkFaqAndProgramLoyalOnHeader()
                     .checkCityOnHeader()
@@ -50,7 +50,7 @@ public class HeadersShouldHaveAllPageTest extends BaseTest {
         });
 
         step("Проверяем заголовки на странице каталога", () -> {
-            open("/catalog");
+            open("catalog");
             headersCopmonent.checkHeadersSection()
                     .checkFaqAndProgramLoyalOnHeader()
                     .checkCityOnHeader()
@@ -58,7 +58,7 @@ public class HeadersShouldHaveAllPageTest extends BaseTest {
         });
 
         step("Проверяем заголовки на странице новости", () -> {
-            open("/news");
+            open("news");
             headersCopmonent.checkHeadersSection()
                     .checkFaqAndProgramLoyalOnHeader()
                     .checkCityOnHeader()
