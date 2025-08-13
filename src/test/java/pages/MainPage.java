@@ -1,13 +1,13 @@
 package pages;
 
 import com.codeborne.selenide.*;
-import com.mifmif.common.regex.Main;
 import io.qameta.allure.Step;
 import utils.DataFaker;
 
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -50,7 +50,7 @@ public class MainPage {
 
     @Step("Открываем главную страницу")
     public MainPage openMainPage() {
-        open("");
+        open(baseUrl);
 
         return this;
     }
