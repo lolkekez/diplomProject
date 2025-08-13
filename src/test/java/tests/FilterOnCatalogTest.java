@@ -19,20 +19,6 @@ public class FilterOnCatalogTest extends BaseTest{
     CityModalComponent cityModalComponent = new CityModalComponent();
     CatalogPage catalogPage = new CatalogPage();
 
-    @BeforeEach
-    void prepareData() {
-        catalogPage.openPage();
-        mainPage.approveCookieButtonClick();
-        cityModalComponent.modalLocationButtonOtherClick()
-                .selectCityButtonClick();
-    }
-
-    @AfterEach
-    void clearSessionStorage() {
-        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
-        executeJavaScript("window.localStorage.clear(); window.sessionStorage.clear();");
-    }
-
     @Test
     @DisplayName("Проверяем список выбора в фильтрах")
     void allFilterOptionsTest() {

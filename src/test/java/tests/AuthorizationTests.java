@@ -15,21 +15,6 @@ public class AuthorizationTests extends BaseTest {
     AuthorizationModalComponent authorizationModalComponent = new AuthorizationModalComponent();
     CityModalComponent cityModalComponent = new CityModalComponent();
 
-    @BeforeEach
-    void prepareData() {
-
-        mainPage.openMainPage()
-                .approveCookieButtonClick();
-        cityModalComponent.modalLocationButtonOtherClick()
-                .selectCityButtonClick();
-    }
-
-    @AfterEach
-    void clearSessionStorage() {
-        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
-        executeJavaScript("window.localStorage.clear(); window.sessionStorage.clear();");
-    }
-
     @Tag("Auth")
     @Test
     @DisplayName("Успешная авторизация")
