@@ -22,20 +22,6 @@ public class ShoppingCartTests extends BaseTest {
     CartPage cartPage = new CartPage();
     HeadersCopmonent headersCopmonent = new HeadersCopmonent();
 
-    @BeforeEach
-    void prepareData() {
-        mainPage.openMainPage()
-                .approveCookieButtonClick();
-        cityModalComponent.modalLocationButtonOtherClick()
-                        .selectCityButtonClick();
-    }
-
-    @AfterEach
-    void clearSessionStorage() {
-        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
-        executeJavaScript("window.localStorage.clear(); window.sessionStorage.clear();");
-    }
-
     @Tag("Cart")
     @ParameterizedTest(name = "addItemOnShoppingCartAuthorization{0}Test")
     @ValueSource(booleans = {true, false})

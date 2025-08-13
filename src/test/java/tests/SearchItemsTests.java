@@ -18,20 +18,6 @@ public class SearchItemsTests extends BaseTest {
     HeadersCopmonent headersCopmonent = new HeadersCopmonent();
     CatalogPage catalogPage = new CatalogPage();
 
-    @BeforeEach
-    void prepareData() {
-        mainPage.openMainPage();
-        mainPage.approveCookieButtonClick();
-        cityModalComponent.modalLocationButtonOtherClick()
-                .selectCityButtonClick();
-    }
-
-    @AfterEach
-    void clearSessionStorage() {
-        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
-        executeJavaScript("window.localStorage.clear(); window.sessionStorage.clear();");
-    }
-
     @ParameterizedTest
     @ValueSource(strings = {"Кроссовки", "Футболка", "Ремень"})
     void searchTest(String query) {
