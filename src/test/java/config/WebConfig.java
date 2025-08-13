@@ -1,6 +1,5 @@
 package config;
 
-import com.codeborne.selenide.Browser;
 import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)

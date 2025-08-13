@@ -1,26 +1,25 @@
 package config;
 
 import com.codeborne.selenide.Configuration;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
 
 public class WebDriverProvider {
-    private final WebConfig config;
-
-    public WebDriverProvider(WebConfig config){
-        this.config = config;
-    }
+    static WebConfig webConfig = ConfigFactory.create(WebConfig.class, System.getProperties());
+    static AuthConfig authconfig = ConfigFactory.create(AuthConfig.class, System.getProperties());
 
     public void setUp() {
-        Configuration.baseUrl = config.getBaseUrl();
-        Configuration.browser = config.getBrowser().toString();
-        Configuration.browserSize = config.getBrowserSize();
-        Configuration.browserVersion = config.getBrowserVersion();
+        Configuration.baseUrl = webConfig.getBaseUrl();
+        Configuration.browser = webConfig.getBrowser().toString();
+        Configuration.browserSize = webConfig.getBrowserSize();
+        Configuration.browserVersion = webConfig.getBrowserVersion();
         Configuration.pageLoadStrategy = "eager";
+        String remoteUrl = "https://" + authconfig.login() + ":" + authconfig.password() + "@" + authconfig.remoteUrl() + "/wd/hub";
 
-        if (config.isRemote()) {
-            Configuration.remote = config.getRemoteUrl();
+        if (webConfig.isRemote()) {
+            Configuration.remote = webConfig.getRemoteUrl();
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("selenoid:options", Map.of(
