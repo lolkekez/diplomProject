@@ -82,7 +82,7 @@ public class HeadersCopmonent {
         return this;
     }
 
-    @Step("Проверяем наличие блока поиска")
+    @Step("Проверяем, что блока поиска отображается")
     public HeadersCopmonent checkSearchBlockShouldBeVisible() {
         searchBlock.shouldBe(visible);
 

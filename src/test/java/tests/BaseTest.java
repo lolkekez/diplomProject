@@ -44,7 +44,6 @@ public class BaseTest {
 
     @BeforeEach
     void prepareData() {
-        catalogPage.openPage();
         mainPage.approveCookieButtonClick();
         cityModalComponent.modalLocationButtonOtherClick()
                 .selectCityButtonClick();

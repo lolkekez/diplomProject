@@ -37,7 +37,7 @@ public class CatalogPage {
 
 
     @Step("Открываем страницу Каталога")
-    public CatalogPage openPage() {
+    public CatalogPage openCatalogPage() {
         open("https://krosspark.ru/catalog");
 
         return this;

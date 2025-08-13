@@ -21,6 +21,7 @@ public class SearchItemsTests extends BaseTest {
     @ParameterizedTest
     @ValueSource(strings = {"Кроссовки", "Футболка", "Ремень"})
     void searchTest(String query) {
+        mainPage.openMainPage();
         headersCopmonent.searchHeaderButtonClick()
                 .checkSearchBlockShouldBeVisible()
                 .insertValueOnSearchInput(query);

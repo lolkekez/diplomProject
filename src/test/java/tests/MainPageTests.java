@@ -17,7 +17,8 @@ public class MainPageTests extends BaseTest {
     @Test
     @DisplayName("Отображение лейбла на карточке товара в зависимости от таба")
     void displayLabelOnProductCardDependingOnTabTest() {
-        mainPage.tabNewItemClick()
+        mainPage.openMainPage()
+                .tabNewItemClick()
                 .checkLabelItemsWithNewItem()
                 .tabSaleClick()
                 .checkLabelItemsWithSale()

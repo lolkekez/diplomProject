@@ -20,7 +20,8 @@ public class AuthorizationTests extends BaseTest {
     @DisplayName("Успешная авторизация")
     void successfulAuthorizationTest() {
 
-        mainPage.profileIconButtonClick();
+        mainPage.openMainPage()
+                .profileIconButtonClick();
 
         authorizationModalComponent.setInputProfileModalEmail(getLoginAuth)
                 .setInputProfileModalPassword(getPassAuth)
@@ -35,7 +36,8 @@ public class AuthorizationTests extends BaseTest {
     @DisplayName("Не успешная авторизация")
     void failedAuthorizationTest() {
 
-        mainPage.profileIconButtonClick();
+        mainPage.openMainPage()
+                .profileIconButtonClick();
 
         authorizationModalComponent.setFailedInputProfileEmail()
                 .setFailedInputProfilePassword()
@@ -50,7 +52,8 @@ public class AuthorizationTests extends BaseTest {
     @DisplayName("поля email и password валидируются на введенные данные")
     void validationEmailAndPasswordFieldsOnRegistrationModalTest() {
 
-        mainPage.profileIconButtonClick();
+        mainPage.openMainPage()
+                .profileIconButtonClick();
 
         authorizationModalComponent.setUncorrectedInputProfileEmail();
 

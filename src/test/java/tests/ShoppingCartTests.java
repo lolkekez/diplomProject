@@ -27,6 +27,8 @@ public class ShoppingCartTests extends BaseTest {
     @ValueSource(booleans = {true, false})
     void addItemOnShoppingCarTest(boolean isAuthorized) {
 
+        mainPage.openMainPage();
+
         if (isAuthorized) {
             mainPage.profileIconButtonClick();
 
@@ -36,9 +38,7 @@ public class ShoppingCartTests extends BaseTest {
         }
 
         mainPage.showCatalogButtonClick();
-
         headersCopmonent.headerShoesButtonClick();
-
         catalogPage.firstItemOnCatalogClick()
                 .checkAddCartButtonDisabled()
                 .firstSizeClick()
@@ -46,7 +46,6 @@ public class ShoppingCartTests extends BaseTest {
                 .checkSuccessAddItemOnCartMessage()
                 .checkNumberItemsInCartBadge()
                 .cartShoppingHeadersClick();
-
         cartPage.cartDetailsVisible();
     }
 
@@ -55,6 +54,8 @@ public class ShoppingCartTests extends BaseTest {
     @ValueSource(booleans = {true, false})
     void deleteItemOnShoppingCarTest(boolean isAuthorized) {
 
+        mainPage.openMainPage();
+
         if (isAuthorized) {
             mainPage.profileIconButtonClick();
 
@@ -64,9 +65,7 @@ public class ShoppingCartTests extends BaseTest {
         }
 
         mainPage.showCatalogButtonClick();
-
         headersCopmonent.headerShoesButtonClick();
-
         catalogPage.firstItemOnCatalogClick()
                 .checkAddCartButtonDisabled()
                 .firstSizeClick()
@@ -74,7 +73,6 @@ public class ShoppingCartTests extends BaseTest {
                 .checkSuccessAddItemOnCartMessage()
                 .checkNumberItemsInCartBadge()
                 .cartShoppingHeadersClick();
-
         cartPage.cartDetailsVisible()
                 .minusItemButtonClick()
                 .checkCartIsEmpty();
