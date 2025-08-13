@@ -50,7 +50,7 @@ public class MainPage {
 
     @Step("Открываем главную страницу")
     public MainPage openMainPage() {
-        open(baseUrl);
+        open("/");
 
         return this;
     }
