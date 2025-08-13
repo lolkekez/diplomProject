@@ -1,10 +1,8 @@
 package pages;
 
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.*;
 import com.mifmif.common.regex.Main;
-import groovy.lang.GString;
-import org.openqa.selenium.Keys;
+import io.qameta.allure.Step;
 import utils.DataFaker;
 
 import java.time.Duration;
@@ -17,108 +15,54 @@ public class MainPage {
 
     DataFaker faker = new DataFaker();
 
-    private SelenideElement approveCookieButton = $("div.modal button"),
-            locationOtherModalButton = $("div.location__button-other"),
-            selectCityModalButton = $$("div.city__city-item").find(text("Москва")),
+    private final SelenideElement approveCookieButton = $("div.modal button"),
             profileHeaderIconButton = $("div.header__icons").$("span.header__profile-icon"),
-            inputProfileEmail = $$("input.el-input__inner").get(0),
-            inputProfilePassword = $$("input.el-input__inner").get(1),
-            loginConfirmButton = $("div.login__action-block button"),
             favouritesHeaderIconButton = $("div.header__icons").$("div[data-v-7ced5273]"),
-            uncorrectedEmailModalText = $$("div.el-form-item__error").get(0),
-            uncorrectedPasswordModalText = $$("div.el-form-item__error").get(1),
-            failedAuthorizationMessage = $("div.el-message--error");
+            showCatalogButton = $$("button[data-v-0f3c88d5]").find(text("ПОКАЗАТЬ ВСЕ НОВИНКИ")),
+            tabNewItem = $$("label.el-radio-button").findBy(text("Новинки")),
+            tabBestSellers = $$("label.el-radio-button").findBy(text("Хиты продаж")),
+            tabSale =  $$("label.el-radio-button").findBy(text("Распродажа"));
 
-    private String randomEmail = faker.getRandomEmail(),
-            randomPassword = faker.getRandomPassword(),
-            randomLine = faker.getRandomLine();
+    private final ElementsCollection labelsOnItemCard = $$("div.product-slider-grid__row div.status-block"),
+            labelOnItemCardForSale = $$("div.card-catalog__content");
 
+
+    @Step("Нажимаем на кнопку подтвердить Cookie")
     public MainPage approveCookieButtonClick() {
         approveCookieButton.click();
 
         return this;
     }
 
-    public MainPage modalLocationButtonOtherClick() {
-        locationOtherModalButton.click();
-
-        return this;
-    }
-
-    public MainPage selectCityButtonClick() {
-        selectCityModalButton.click();
-
-        return this;
-    }
+    @Step("Жмем на кнопку профиля в заголовке")
     public MainPage profileIconButtonClick() {
         profileHeaderIconButton.click();
 
         return this;
     }
 
-    public MainPage setInputProfileEmail(String value) {
-        inputProfileEmail.setValue(value);
-
-        return this;
-    }
-
-    public MainPage setInputProfilePassword(String value) {
-        inputProfilePassword.setValue(value);
-
-        return this;
-    }
-
-    public MainPage loginConfirmButtonClick() {
-        loginConfirmButton.click();
-
-        return this;
-    }
-
+    @Step("Жмем на кнопку избранное в заголовке")
     public MainPage favouritesHeaderIconButtonClick() {
         favouritesHeaderIconButton.click();
 
         return this;
     }
 
-
+    @Step("Открываем главную страницу")
     public MainPage openMainPage() {
         open("");
 
         return this;
     }
 
-
-    public MainPage setUncorrectedInputProfilePassword() {
-        inputProfilePassword.setValue(randomLine);
-        inputProfilePassword.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.BACK_SPACE);
-
-        return this;
-    }
-
-    public MainPage setUncorrectedInputProfileEmail() {
-        inputProfileEmail.setValue(randomLine);
-
-        return this;
-    }
-
-    public MainPage setFailedInputProfileEmail() {
-        inputProfileEmail.setValue(randomEmail);
-
-        return this;
-    }
-
-    public MainPage setFailedInputProfilePassword() {
-        inputProfilePassword.setValue(randomPassword);
-
-        return this;
-    }
-
+    @Step("Проверяем, что появился заголовок Избранное")
     public MainPage checkFavouritesHeaderIconVisible() {
         favouritesHeaderIconButton.shouldBe(visible);
 
         return this;
     }
 
+    @Step("Проверяем что находимся на странице /profile")
     public MainPage checkRedirectionProfilePageAfterAuthorization() {
         profileHeaderIconButton.click();
         String currentUrl = WebDriverRunner.getWebDriver().getCurrentUrl();
@@ -127,40 +71,61 @@ public class MainPage {
         return this;
     }
 
-    public MainPage checkEmailFieldShouldBeUncorrectedText() {
-        uncorrectedEmailModalText.shouldBe(text("Пожалуйста введите корректный email"));
+    @Step("Жму на кнопку показать все новинки")
+    public MainPage showCatalogButtonClick() {
+        showCatalogButton.click();
 
         return this;
     }
 
-    public MainPage checkPasswordFieldShouldBeUncorrectedText() {
-        uncorrectedPasswordModalText.shouldBe(text("Это поле обязательно для заполнения"), Duration.ofSeconds(10));
+    @Step("Открываем таб 'Новинки'")
+    public MainPage tabNewItemClick() {
+        tabNewItem.click();
 
         return this;
     }
 
-    public MainPage checkLoginConfirmButtonDisabled() {
-        loginConfirmButton.shouldBe(disabled);
+    @Step("Открываем таб 'Хиты продаж'")
+    public MainPage tabBestSellersClick() {
+        tabBestSellers.click();
 
         return this;
     }
 
-    public MainPage checkFailedAuthorizationMessageVisible() {
-        failedAuthorizationMessage.shouldBe(visible, Duration.ofSeconds(2));
-        failedAuthorizationMessage.shouldBe(text("Неверные данные для входа"));
+    @Step("Открываем таб 'Скидки'")
+    public MainPage tabSaleClick() {
+        tabSale.click();
 
         return this;
     }
 
+    @Step("Проверяем наличие лейбла 'Распродажа' на карточке товара")
+    public MainPage checkLabelItemsWithSale() {
+       labelOnItemCardForSale.get(0).shouldBe(visible, Duration.ofSeconds(5000)).shouldHave(text("Распродажа"));
+        for (SelenideElement labelOnItem : labelsOnItemCard) {
+            labelOnItem.shouldHave(text("Распродажа"));
+        }
 
+        return this;
+    }
 
+    @Step("Проверяем наличие лейбла 'Хит-продаж' на карточке товара")
+    public MainPage checkLabelItemsWithBestSellers() {
+        labelsOnItemCard.get(0).shouldBe(visible, Duration.ofSeconds(5000)).shouldHave(text("Хит-продаж"));
+        for (SelenideElement labelOnItem : labelsOnItemCard) {
+            labelOnItem.shouldHave(text("Хит-продаж"));
+        }
 
+        return this;
+    }
 
+    @Step("Проверяем наличие лейбла 'Новинка' на карточке товара")
+    public MainPage checkLabelItemsWithNewItem() {
+        labelsOnItemCard.get(0).shouldBe(visible, Duration.ofSeconds(5000)).shouldHave(text("Новинка"));
+        for (SelenideElement labelOnItem : labelsOnItemCard) {
+            labelOnItem.shouldHave(text("Новинка"));
+        }
 
-
-
-
-
-
-
+        return this;
+    }
 }
