@@ -16,25 +16,12 @@ public class HeadersShouldHaveAllPageTest extends BaseTest {
     CityModalComponent cityModalComponent = new CityModalComponent();
     HeadersCopmonent headersCopmonent = new HeadersCopmonent();
 
-    @BeforeEach
-    void prepareData() {
-        mainPage.openMainPage()
-                .approveCookieButtonClick();
-        cityModalComponent.modalLocationButtonOtherClick()
-                .selectCityButtonClick();
-    }
-
-    @AfterEach
-    void clearSessionStorage() {
-        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
-        executeJavaScript("window.localStorage.clear(); window.sessionStorage.clear();");
-    }
-
     @Test
     @DisplayName("Отображение заголовков на всех страницах")
     void displayingHeadingsOnAllPagesTest() {
 
         step("Проверяем заголовки на главное странице", () -> {
+            mainPage.openMainPage();
             headersCopmonent.checkHeadersSection()
                     .checkFaqAndProgramLoyalOnHeader()
                     .checkCityOnHeader()
