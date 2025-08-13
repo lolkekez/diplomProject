@@ -5,19 +5,19 @@ import org.junit.jupiter.params.provider.ValueSource;
 import pages.CatalogPage;
 import pages.MainPage;
 import pages.components.modal.CityModalComponent;
-import pages.components.HeadersCopmonent;
+import pages.components.HeadersComponent;
 
 public class SearchItemsTests extends BaseTest {
     MainPage mainPage = new MainPage();
     CityModalComponent cityModalComponent = new CityModalComponent();
-    HeadersCopmonent headersCopmonent = new HeadersCopmonent();
+    HeadersComponent headersComponent = new HeadersComponent();
     CatalogPage catalogPage = new CatalogPage();
 
     @ParameterizedTest
     @ValueSource(strings = {"Кроссовки", "Футболка", "Ремень"})
     void searchTest(String query) {
         mainPage.openMainPage();
-        headersCopmonent.searchHeaderButtonClick()
+        headersComponent.searchHeaderButtonClick()
                 .checkSearchBlockShouldBeVisible()
                 .insertValueOnSearchInput(query);
 

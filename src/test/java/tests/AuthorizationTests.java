@@ -1,13 +1,10 @@
 package tests;
 
-import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
 
 import pages.MainPage;
 import pages.components.modal.AuthorizationModalComponent;
 import pages.components.modal.CityModalComponent;
-
-import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class AuthorizationTests extends BaseTest {
 

@@ -1,16 +1,11 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 
-import com.mifmif.common.regex.Main;
-import config.AuthConfig;
 import config.TestDataConfig;
-import config.WebConfig;
-
 import config.WebDriverProvider;
+
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 
@@ -18,7 +13,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
 import pages.CatalogPage;
 import pages.MainPage;
 import pages.components.modal.CityModalComponent;
@@ -54,8 +49,6 @@ public class BaseTest {
         cityModalComponent.modalLocationButtonOtherClick()
                 .selectCityButtonClick();
     }
-
-
 
     @AfterEach
     void addAttachments() {
