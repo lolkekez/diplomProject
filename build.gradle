@@ -62,17 +62,3 @@ tasks.withType(Test) {
         }
     }
 }
-/*
-    task authorization_tests(type: Test) {
-        useJUnitPlatform {
-            includeTags("Auth")
-        }
-    }
-
-    task shopping_cart_tests(type: Test) {
-        useJUnitPlatform {
-            includeTags("Cart")
-        }
-    }
-}
-*/
