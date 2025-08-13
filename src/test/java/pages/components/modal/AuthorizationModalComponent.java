@@ -12,11 +12,11 @@ import static com.codeborne.selenide.Selenide.*;
 public class AuthorizationModalComponent {
 
     MainPage mainPage = new MainPage();
-
     DataFaker faker = new DataFaker();
 
     private final SelenideElement inputProfileModalEmail = $$("input.el-input__inner").get(0),
             inputProfileModalPassword = $$("input.el-input__inner").get(1),
+            fieldProfileModalPsasword = $$("div.el-input__wrapper").get(2),
             loginConfirmButton = $("div.login__action-block button"),
             uncorrectedEmailModalText = $$("div.el-form-item__error").get(0),
             uncorrectedPasswordModalText = $$("div.el-form-item__error").get(1),
@@ -49,8 +49,9 @@ public class AuthorizationModalComponent {
 
     @Step("В модальном окне авторизации вводим некорректный password")
     public AuthorizationModalComponent setUncorrectedInputProfilePassword() {
-        inputProfileModalPassword.setValue(randomLine);
-        inputProfileModalPassword.sendKeys(Keys.chord(Keys.COMMAND, "a"), Keys.BACK_SPACE);
+        inputProfileModalPassword.setValue("q");
+        inputProfileModalPassword.sendKeys(Keys.BACK_SPACE);
+        //inputProfileModalPassword.sendKeys(Keys.chord(Keys.COMMAND, "a"), Keys.BACK_SPACE);
 
         return this;
     }
@@ -77,14 +78,14 @@ public class AuthorizationModalComponent {
     }
 
     @Step("Проверяем, что появилось сообщение 'Пожалуйста введите корректный email'")
-    public AuthorizationModalComponent checkEmailFieldShouldBeUncorrectedText() {
+    public AuthorizationModalComponent checkEmailFieldShouldHaveUncorrectedText() {
         uncorrectedEmailModalText.shouldHave(text("Пожалуйста введите корректный email"));
 
         return this;
     }
 
     @Step("Проверяем, что появилось сообщение 'Это поле обязательно для заполнения'")
-    public AuthorizationModalComponent checkPasswordFieldShouldBeUncorrectedText() {
+    public AuthorizationModalComponent checkPasswordFieldShouldHaveUncorrectedText() {
         uncorrectedPasswordModalText.shouldHave(text("Это поле обязательно для заполнения"), Duration.ofSeconds(10));
 
         return this;

@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class HeadersCopmonent {
 
-    public static List<String> getExpectedHeadersSectionList() {
+    private static List<String> getExpectedHeadersSectionList() {
         return Arrays.asList("Обувь",
                 "Одежда",
                 "Аксессуары",
@@ -24,7 +24,7 @@ public class HeadersCopmonent {
                 "Новости");
     }
 
-    public static List<String> getExpectedHeadersQAandProgramLoyalList() {
+    private static List<String> getExpectedHeadersQAandProgramLoyalList() {
         return Arrays.asList("Частые вопросы",
                 "Программа лояльности");
     }

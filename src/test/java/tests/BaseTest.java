@@ -1,6 +1,8 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 
 import config.AuthConfig;
@@ -11,18 +13,18 @@ import config.WebDriverProvider;
 import io.qameta.allure.selenide.AllureSelenide;
 
 import org.aeonbits.owner.ConfigFactory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.confirm;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class BaseTest {
 
-//    protected static final String getLoginAuth = System.getProperty("loginTest");
-//    protected static final String getPassAuth = System.getProperty("passwordTest");
-
     static TestDataConfig testDataConfig = ConfigFactory.create(TestDataConfig.class, System.getProperties());
     static WebDriverProvider webDriverProvider = new WebDriverProvider();
+
     private static WebConfig config;
 
     protected static final String getLoginAuth = testDataConfig.getLogin();
@@ -33,6 +35,13 @@ public class BaseTest {
         webDriverProvider.setUp();
     }
 
+
+    @AfterEach
+    void clearSessionStorage() {
+        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
+        executeJavaScript("window.localStorage.clear(); window.sessionStorage.clear();");
+        Selenide.closeWebDriver();
+    }
 /*
     @BeforeAll
     static void beforeAll(){
