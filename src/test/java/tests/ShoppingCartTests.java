@@ -8,7 +8,7 @@ import pages.CatalogPage;
 import pages.MainPage;
 import pages.components.modal.AuthorizationModalComponent;
 import pages.components.modal.CityModalComponent;
-import pages.components.HeadersCopmonent;
+import pages.components.HeadersComponent;
 
 public class ShoppingCartTests extends BaseTest {
 
@@ -17,7 +17,7 @@ public class ShoppingCartTests extends BaseTest {
     AuthorizationModalComponent authorizationModalComponent = new AuthorizationModalComponent();
     CityModalComponent cityModalComponent = new CityModalComponent();
     CartPage cartPage = new CartPage();
-    HeadersCopmonent headersCopmonent = new HeadersCopmonent();
+    HeadersComponent headersComponent = new HeadersComponent();
 
     @Tag("Cart")
     @ParameterizedTest(name = "addItemOnShoppingCartAuthorization{0}Test")
@@ -35,7 +35,7 @@ public class ShoppingCartTests extends BaseTest {
         }
 
         mainPage.showCatalogButtonClick();
-        headersCopmonent.headerShoesButtonClick();
+        headersComponent.headerShoesButtonClick();
         catalogPage.firstItemOnCatalogClick()
                 .checkAddCartButtonDisabled()
                 .firstSizeClick()
@@ -62,7 +62,7 @@ public class ShoppingCartTests extends BaseTest {
         }
 
         mainPage.showCatalogButtonClick();
-        headersCopmonent.headerShoesButtonClick();
+        headersComponent.headerShoesButtonClick();
         catalogPage.firstItemOnCatalogClick()
                 .checkAddCartButtonDisabled()
                 .firstSizeClick()

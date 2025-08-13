@@ -12,7 +12,7 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class HeadersCopmonent {
+public class HeadersComponent {
 
     private static List<String> getExpectedHeadersSectionList() {
         return Arrays.asList("Обувь",
@@ -41,63 +41,63 @@ public class HeadersCopmonent {
             headerNews = $$("div.header__link").findBy(text("Новости"));
 
     @Step("Кликаем на хедер Новости")
-    public HeadersCopmonent headerNewsClick() {
+    public HeadersComponent headerNewsClick() {
         headerNews.click();
 
         return this;
     }
 
     @Step("Проверяем наличие разделов в заголовках")
-    public HeadersCopmonent checkHeadersSection() {
+    public HeadersComponent checkHeadersSection() {
         actualHeadersSectionList.shouldHave(CollectionCondition.texts(getExpectedHeadersSectionList()));
 
         return this;
     }
 
     @Step("Нажимаем на заголовок 'Обувь'")
-    public HeadersCopmonent headerShoesButtonClick() {
+    public HeadersComponent headerShoesButtonClick() {
         headerShoesButton.click();
 
         return this;
     }
 
     @Step("Проверяем наличие кнопок faq и программы лояльности")
-    public HeadersCopmonent checkFaqAndProgramLoyalOnHeader() {
+    public HeadersComponent checkFaqAndProgramLoyalOnHeader() {
         actualHeadersFaqAndProgramLoyalList.shouldHave(CollectionCondition.texts(getExpectedHeadersQAandProgramLoyalList()));
 
         return this;
     }
 
     @Step("Проверяем наличие города в заголовках")
-    public HeadersCopmonent checkCityOnHeader() {
+    public HeadersComponent checkCityOnHeader() {
         cityHeader.shouldHave(text("Москва"));
 
         return this;
     }
 
     @Step("Проверяем наличие контактного номера на страница")
-    public HeadersCopmonent checkMobileNumberOnHeader() {
+    public HeadersComponent checkMobileNumberOnHeader() {
         mobileNumberOnHeader.shouldHave(text("+7 (995) 568-50-58"));
 
         return this;
     }
 
     @Step("Жмем на кнопку поиска")
-    public HeadersCopmonent searchHeaderButtonClick() {
+    public HeadersComponent searchHeaderButtonClick() {
         searchHeaderButton.click();
 
         return this;
     }
 
     @Step("Проверяем, что блока поиска отображается")
-    public HeadersCopmonent checkSearchBlockShouldBeVisible() {
+    public HeadersComponent checkSearchBlockShouldBeVisible() {
         searchBlock.shouldBe(visible);
 
         return this;
     }
 
     @Step("Вводим в поле поиска значение")
-    public HeadersCopmonent insertValueOnSearchInput(String value) {
+    public HeadersComponent insertValueOnSearchInput(String value) {
         searchInput.setValue(value).pressEnter();
 
         return this;
