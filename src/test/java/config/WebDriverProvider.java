@@ -19,7 +19,7 @@ public class WebDriverProvider {
         String remoteUrl = "https://" + authconfig.login() + ":" + authconfig.password() + "@" + authconfig.remoteUrl() + "/wd/hub";
 
         if (webConfig.isRemote()) {
-            Configuration.remote = webConfig.getRemoteUrl();
+            Configuration.remote = remoteUrl;
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("selenoid:options", Map.of(

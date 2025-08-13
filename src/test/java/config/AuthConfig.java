@@ -9,8 +9,13 @@ import org.aeonbits.owner.Config;
 })
 
 public interface AuthConfig extends Config {
+
+    @Key("remoteLogin")
+    @DefaultValue("user1")
     String login();
 
+    @Key("remotePass")
+    @DefaultValue("1234")
     String password();
 
     @Key("remoteUrl")

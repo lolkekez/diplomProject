@@ -12,8 +12,8 @@ public interface WebConfig extends Config{
     String getBaseUrl();
 
     @Key("browser")
-    @DefaultValue("CHROME")
-    Browser getBrowser();
+    @DefaultValue("chrome")
+    String getBrowser();
 
     @Key("browserSize")
     @DefaultValue("1920x1080")
@@ -26,7 +26,4 @@ public interface WebConfig extends Config{
     @Key("isRemote")
     @DefaultValue("false")
     Boolean isRemote();
-
-    @Key("remoteUrl")
-    String getRemoteUrl();
 }
