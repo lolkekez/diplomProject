@@ -1,6 +1,5 @@
 package tests;
 
-import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -9,9 +8,7 @@ import pages.CatalogPage;
 import pages.MainPage;
 import pages.components.modal.AuthorizationModalComponent;
 import pages.components.modal.CityModalComponent;
-import pages.components.modal.HeadersCopmonent;
-
-import static com.codeborne.selenide.Selenide.executeJavaScript;
+import pages.components.HeadersCopmonent;
 
 public class ShoppingCartTests extends BaseTest {
 
