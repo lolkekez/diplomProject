@@ -7,7 +7,7 @@ import org.aeonbits.owner.Config;
 })
 public interface WebConfig extends Config{
     @Key("baseUrl")
-    @DefaultValue("https://krosspark.ru/")
+    @DefaultValue("https://krosspark.ru")
     String getBaseUrl();
 
     @Key("browser")
