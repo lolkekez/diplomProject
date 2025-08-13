@@ -27,6 +27,14 @@ public class MainPage {
             labelOnItemCardForSale = $$("div.card-catalog__content");
 
 
+    @Step("Открываем главную страницу")
+    public MainPage openMainPage() {
+        open(baseUrl);
+
+        return this;
+    }
+
+
     @Step("Нажимаем на кнопку подтвердить Cookie")
     public MainPage approveCookieButtonClick() {
         approveCookieButton.click();
@@ -44,13 +52,6 @@ public class MainPage {
     @Step("Жмем на кнопку избранное в заголовке")
     public MainPage favouritesHeaderIconButtonClick() {
         favouritesHeaderIconButton.click();
-
-        return this;
-    }
-
-    @Step("Открываем главную страницу")
-    public MainPage openMainPage() {
-        open("/");
 
         return this;
     }
