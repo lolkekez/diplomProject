@@ -43,16 +43,19 @@ public class BaseTest {
     }
 
     @BeforeEach
+    void addListener() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+    }
+
+    @BeforeEach
     void prepareData() {
-        mainPage.approveCookieButtonClick();
+        mainPage.openMainPage()
+                .approveCookieButtonClick();
         cityModalComponent.modalLocationButtonOtherClick()
                 .selectCityButtonClick();
     }
 
-    @BeforeEach
-    void addListener() {
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-    }
+
 
     @AfterEach
     void addAttachments() {
@@ -60,6 +63,8 @@ public class BaseTest {
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
+        WebDriverRunner.getWebDriver().manage().deleteAllCookies();
+        executeJavaScript("window.localStorage.clear(); window.sessionStorage.clear();");
         closeWebDriver();
     }
 }
