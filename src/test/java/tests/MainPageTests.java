@@ -1,14 +1,10 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
-import config.WebDriverProvider;
 import org.junit.jupiter.api.*;
 import pages.MainPage;
 import pages.components.modal.CityModalComponent;
-import pages.components.modal.HeadersCopmonent;
+import pages.components.HeadersCopmonent;
 
-import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static com.codeborne.selenide.Selenide.open;
 
 public class MainPageTests extends BaseTest {

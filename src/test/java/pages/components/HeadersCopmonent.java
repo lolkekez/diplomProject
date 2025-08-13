@@ -1,4 +1,4 @@
-package pages.components.modal;
+package pages.components;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
@@ -37,8 +37,15 @@ public class HeadersCopmonent {
             searchHeaderButton = $$("div.header__icons div.global-icon").get(0),
             searchBlock = $("div.search-block__content"),
             searchInput = $("input.el-input__inner"),
-            headerShoesButton = $$("label.el-radio-button").findBy(text("ОБУВЬ"));
+            headerShoesButton = $$("label.el-radio-button").findBy(text("ОБУВЬ")),
+            headerNews = $$("div.header__link").findBy(text("Новости"));
 
+    @Step("Кликаем на хедер Новости")
+    public HeadersCopmonent headerNewsClick() {
+        headerNews.click();
+
+        return this;
+    }
 
     @Step("Проверяем наличие разделов в заголовках")
     public HeadersCopmonent checkHeadersSection() {

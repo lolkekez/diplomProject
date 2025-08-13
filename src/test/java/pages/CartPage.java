@@ -13,6 +13,14 @@ public class CartPage {
             minusItemButton = $$("button.card-cart__button").findBy(text("-")),
             headersCartEmpty = $$("div.title").findBy(text("Корзина пуста"));
 
+    @Step()
+    public CartPage openCartPage() {
+        open("/cart");
+
+        return this;
+    }
+
+
     @Step("Проверяем, что в корзине есть товар")
     public CartPage cartDetailsVisible() {
         cartDetails.shouldBe(visible);

@@ -1,16 +1,11 @@
 package tests;
 
-import com.codeborne.selenide.WebDriverRunner;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import pages.CatalogPage;
 import pages.MainPage;
 import pages.components.modal.CityModalComponent;
-import pages.components.modal.HeadersCopmonent;
-
-import static com.codeborne.selenide.Selenide.*;
+import pages.components.HeadersCopmonent;
 
 public class SearchItemsTests extends BaseTest {
     MainPage mainPage = new MainPage();
