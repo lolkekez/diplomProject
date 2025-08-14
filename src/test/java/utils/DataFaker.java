@@ -5,7 +5,6 @@ import com.github.javafaker.Faker;
 import java.util.Locale;
 
 public class DataFaker {
-
     public Faker faker = new Faker(new Locale("en-GB"));
 
     public String getRandomEmail() {
@@ -19,5 +18,4 @@ public class DataFaker {
     public String getRandomLine() {
         return faker.internet().toString();
     }
-
 }

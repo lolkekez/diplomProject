@@ -17,9 +17,9 @@ public class ShoppingCartTests extends BaseTest {
     HeadersComponent headersComponent = new HeadersComponent();
 
     @Tag("Cart")
-    @ParameterizedTest(name = "addItemOnShoppingCartAuthorization{0}Test")
+    @ParameterizedTest(name = "добавление товара в корзину (authorized = {0})")
     @ValueSource(booleans = {true, false})
-    void addItemOnShoppingCarTest(boolean isAuthorized) {
+    void addingItemShoppingCartTest (boolean isAuthorized) {
         mainPage.openMainPage();
         if (isAuthorized) {
             mainPage.profileIconButtonClick();
@@ -41,9 +41,9 @@ public class ShoppingCartTests extends BaseTest {
     }
 
     @Tag("Cart")
-    @ParameterizedTest(name = "deleteItemOnShoppingCartAuthorization{0}Test")
+    @ParameterizedTest(name = "удаление товара из корзины (authorized = {0})")
     @ValueSource(booleans = {true, false})
-    void deleteItemOnShoppingCarTest(boolean isAuthorized) {
+    void deletedItemShoppingCartTest(boolean isAuthorized) {
         mainPage.openMainPage();
         if (isAuthorized) {
             mainPage.profileIconButtonClick();

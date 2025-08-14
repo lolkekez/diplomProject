@@ -3,8 +3,10 @@ package pages;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.github.javafaker.Cat;
 import io.qameta.allure.Step;
 import pages.components.filter.*;
+import utils.DataFaker;
 
 import java.time.Duration;
 
@@ -12,6 +14,8 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CatalogPage {
+    DataFaker dataFaker = new DataFaker();
+
     private final SelenideElement addCartButton = $("button[data-v-0f3c88d5]"),
             successAddItemOnCartMessage = $("div.el-message--success"),
             cartShoppingHeader = $("div.el-badge").$("div.global-icon"),
@@ -22,7 +26,9 @@ public class CatalogPage {
             buttonFilterSize = $$("div.fixed-title").findBy(text("Размеры")),
             buttonFilterSeason = $$("div.fixed-title").findBy(text("Сезон")),
             buttonFilterShop = $$("div.fixed-title").findBy(text("Магазины")),
-            buttonFilterColor = $$("div.fixed-title").findBy(text("Цвет"));
+            buttonFilterColor = $$("div.fixed-title").findBy(text("Цвет")),
+            imgStub = $("img[data-v-fd545783]"),
+            textUnderStub = $("p.description");
 
     private final ElementsCollection itemsOnCatalog = $$("div.card-search"),
             sizes = $$("div.el-radio-group .el-radio-button"),
@@ -95,6 +101,21 @@ public class CatalogPage {
     @Step("Проверяем, что в фильтре введено значение из первого поиска")
     public CatalogPage checkValueOnSearchInput(String query) {
         searchInputFilter.shouldBe(visible, Duration.ofSeconds(5)).shouldHave(value(query));
+
+        return this;
+    }
+
+    @Step("Вводим в поле поиска рандомную строку")
+    public CatalogPage setValueRandomLineOnSearchInput() {
+        searchInputFilter.setValue(dataFaker.getRandomLine());
+
+        return this;
+    }
+
+    @Step("Проверяем отображение заглушки")
+    public CatalogPage checkShouldBeVisibleStub() {
+        imgStub.shouldBe(visible).shouldHave(attributeMatching("src", ".*assets/mascot-new-J1KLOXPA.webp$"));
+        textUnderStub.shouldHave(text("К сожалению ничего не найдено, попробуйте очистить фильтры."));
 
         return this;
     }
