@@ -25,7 +25,7 @@ public class SearchItemsTests extends BaseTest {
     }
 
     @Test
-    @DisplayName("Отображение заглушки при вводе несуществующего продукта")
+    @DisplayName("Отображение заглушки при поиске несуществующего продукта")
     void displayingStubWhenEnteringNonExistentProductTest() {
         catalogPage.openCatalogPage()
                 .setValueRandomLineOnSearchInput()
