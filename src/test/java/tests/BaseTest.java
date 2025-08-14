@@ -61,17 +61,3 @@ public class BaseTest {
         closeWebDriver();
     }
 }
-/*
-    @BeforeAll
-    static void beforeAll(){
-        config = ConfigFactory.create(WebConfig.class, System.getProperties());
-        WebDriverProvider webConfig = new WebDriverProvider(config);
-        webConfig.setUp();
-    }
-    @AfterEach
-    void tearDown() {
-
-        closeWebDriver();
-    }
-
- */

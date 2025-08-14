@@ -60,22 +60,4 @@ public class AuthorizationTests extends BaseTest {
                 .checkEmailFieldShouldHaveUncorrectedText()
                 .checkPasswordFieldShouldHaveUncorrectedText();
     }
-
-    @Tag("Auth")
-    @Test
-    @DisplayName("поля email и password валидируются на введенные данные")
-    void tryFixvalidationEmailAndPasswordFieldsOnRegistrationModalTest() {
-
-        mainPage.profileIconButtonClick();
-
-        authorizationModalComponent.setUncorrectedInputProfileEmail();
-
-        authorizationModalComponent.checkLoginConfirmButtonDisabled();
-
-        authorizationModalComponent.setUncorrectedInputProfilePassword()
-                .checkEmailFieldShouldHaveUncorrectedText()
-                .checkPasswordFieldShouldHaveUncorrectedText();
-    }
-
-
 }
