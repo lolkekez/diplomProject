@@ -13,7 +13,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class HeadersComponent {
-
     private static List<String> getExpectedHeadersSectionList() {
         return Arrays.asList("Обувь",
                 "Одежда",
@@ -102,6 +101,4 @@ public class HeadersComponent {
 
         return this;
     }
-
-
 }

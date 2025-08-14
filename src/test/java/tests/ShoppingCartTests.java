@@ -7,15 +7,12 @@ import pages.CartPage;
 import pages.CatalogPage;
 import pages.MainPage;
 import pages.components.modal.AuthorizationModalComponent;
-import pages.components.modal.CityModalComponent;
 import pages.components.HeadersComponent;
 
 public class ShoppingCartTests extends BaseTest {
-
     MainPage mainPage = new MainPage();
     CatalogPage catalogPage = new CatalogPage();
     AuthorizationModalComponent authorizationModalComponent = new AuthorizationModalComponent();
-    CityModalComponent cityModalComponent = new CityModalComponent();
     CartPage cartPage = new CartPage();
     HeadersComponent headersComponent = new HeadersComponent();
 
@@ -23,9 +20,7 @@ public class ShoppingCartTests extends BaseTest {
     @ParameterizedTest(name = "addItemOnShoppingCartAuthorization{0}Test")
     @ValueSource(booleans = {true, false})
     void addItemOnShoppingCarTest(boolean isAuthorized) {
-
         mainPage.openMainPage();
-
         if (isAuthorized) {
             mainPage.profileIconButtonClick();
 
@@ -33,7 +28,6 @@ public class ShoppingCartTests extends BaseTest {
                     .setInputProfileModalPassword("Warcraft_Goblin331")
                     .loginConfirmButtonClick();
         }
-
         mainPage.showCatalogButtonClick();
         headersComponent.headerShoesButtonClick();
         catalogPage.firstItemOnCatalogClick()
@@ -50,9 +44,7 @@ public class ShoppingCartTests extends BaseTest {
     @ParameterizedTest(name = "deleteItemOnShoppingCartAuthorization{0}Test")
     @ValueSource(booleans = {true, false})
     void deleteItemOnShoppingCarTest(boolean isAuthorized) {
-
         mainPage.openMainPage();
-
         if (isAuthorized) {
             mainPage.profileIconButtonClick();
 
@@ -60,7 +52,6 @@ public class ShoppingCartTests extends BaseTest {
                     .setInputProfileModalPassword("Warcraft_Goblin331")
                     .loginConfirmButtonClick();
         }
-
         mainPage.showCatalogButtonClick();
         headersComponent.headerShoesButtonClick();
         catalogPage.firstItemOnCatalogClick()

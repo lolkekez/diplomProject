@@ -6,18 +6,16 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CartPage {
-
     private final SelenideElement cartDetails = $("div.card-cart"),
             minusItemButton = $$("button.card-cart__button").findBy(text("-")),
             headersCartEmpty = $$("div.title").findBy(text("Корзина пуста"));
 
-    @Step()
+    @Step("Открываем страницу Корзина")
     public CartPage openCartPage() {
         open("/cart");
 
         return this;
     }
-
 
     @Step("Проверяем, что в корзине есть товар")
     public CartPage cartDetailsVisible() {

@@ -12,7 +12,6 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CatalogPage {
-
     private final SelenideElement addCartButton = $("button[data-v-0f3c88d5]"),
             successAddItemOnCartMessage = $("div.el-message--success"),
             cartShoppingHeader = $("div.el-badge").$("div.global-icon"),
@@ -25,7 +24,6 @@ public class CatalogPage {
             buttonFilterShop = $$("div.fixed-title").findBy(text("Магазины")),
             buttonFilterColor = $$("div.fixed-title").findBy(text("Цвет"));
 
-
     private final ElementsCollection itemsOnCatalog = $$("div.card-search"),
             sizes = $$("div.el-radio-group .el-radio-button"),
             listBrandsOnFilter = $$("div.content-container").get(0).$$("div"),
@@ -34,7 +32,6 @@ public class CatalogPage {
             listSeasonOnFilter = $$("div.content-container").get(3).$$("div"),
             listShopOnFilter = $$("div.content-container").get(4).$$("div"),
             listColorOnFilter = $$("div.content-container").get(5).$$("div");
-
 
     @Step("Открываем страницу Каталога")
     public CatalogPage openCatalogPage() {
@@ -104,7 +101,6 @@ public class CatalogPage {
 
     @Step("Проверяем, что в каталоге отображаются товары введенные в поиске")
     public CatalogPage checkSearchFindEnteredValue(String query) {
-        //itemsOnCatalog.forEach(title -> title.shouldHave(text(query)));
         itemsOnCatalog.get(0).shouldBe(visible);
         for (SelenideElement item : itemsOnCatalog) {
             item.shouldHave(text(query));
@@ -196,5 +192,4 @@ public class CatalogPage {
 
         return this;
     }
-
 }

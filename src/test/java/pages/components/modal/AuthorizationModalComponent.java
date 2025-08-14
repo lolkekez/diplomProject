@@ -3,20 +3,16 @@ package pages.components.modal;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
-import pages.MainPage;
 import utils.DataFaker;
 import java.time.Duration;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class AuthorizationModalComponent {
-
-    MainPage mainPage = new MainPage();
     DataFaker faker = new DataFaker();
 
     private final SelenideElement inputProfileModalEmail = $$("input.el-input__inner").get(0),
             inputProfileModalPassword = $$("input.el-input__inner").get(1),
-            fieldProfileModalPsasword = $$("div.el-input__wrapper").get(2),
             loginConfirmButton = $("div.login__action-block button"),
             uncorrectedEmailModalText = $$("div.el-form-item__error").get(0),
             uncorrectedPasswordModalText = $$("div.el-form-item__error").get(1),
@@ -51,7 +47,6 @@ public class AuthorizationModalComponent {
     public AuthorizationModalComponent setUncorrectedInputProfilePassword() {
         inputProfileModalPassword.setValue("q");
         inputProfileModalPassword.sendKeys(Keys.BACK_SPACE);
-        //inputProfileModalPassword.sendKeys(Keys.chord(Keys.COMMAND, "a"), Keys.BACK_SPACE);
 
         return this;
     }

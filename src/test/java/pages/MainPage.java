@@ -12,7 +12,6 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MainPage {
-
     DataFaker faker = new DataFaker();
 
     private final SelenideElement approveCookieButton = $("div.modal button"),
@@ -26,14 +25,12 @@ public class MainPage {
     private final ElementsCollection labelsOnItemCard = $$("div.product-slider-grid__row div.status-block"),
             labelOnItemCardForSale = $$("div.card-catalog__content");
 
-
     @Step("Открываем главную страницу")
     public MainPage openMainPage() {
         open(baseUrl);
 
         return this;
     }
-
 
     @Step("Нажимаем на кнопку подтвердить Cookie")
     public MainPage approveCookieButtonClick() {
@@ -45,13 +42,6 @@ public class MainPage {
     @Step("Жмем на кнопку профиля в заголовке")
     public MainPage profileIconButtonClick() {
         profileHeaderIconButton.click();
-
-        return this;
-    }
-
-    @Step("Жмем на кнопку избранное в заголовке")
-    public MainPage favouritesHeaderIconButtonClick() {
-        favouritesHeaderIconButton.click();
 
         return this;
     }

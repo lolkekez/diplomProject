@@ -21,7 +21,6 @@ import pages.components.modal.CityModalComponent;
 import static com.codeborne.selenide.Selenide.*;
 
 public class BaseTest {
-
     CatalogPage catalogPage = new CatalogPage();
     MainPage mainPage = new MainPage();
     CityModalComponent cityModalComponent = new CityModalComponent();

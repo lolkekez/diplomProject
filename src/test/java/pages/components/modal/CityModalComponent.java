@@ -7,9 +7,7 @@ import pages.MainPage;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
-
 public class CityModalComponent {
-
     MainPage mainPage = new MainPage();
 
     private final SelenideElement locationOtherModalButton = $("div.location__button-other"),
@@ -28,5 +26,4 @@ public class CityModalComponent {
 
         return this;
     }
-
 }

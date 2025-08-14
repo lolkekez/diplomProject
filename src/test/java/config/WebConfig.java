@@ -5,6 +5,7 @@ import org.aeonbits.owner.Config;
 @Config.Sources({
         "classpath:${env}.properties"
 })
+
 public interface WebConfig extends Config{
     @Key("baseUrl")
     @DefaultValue("https://krosspark.ru")
