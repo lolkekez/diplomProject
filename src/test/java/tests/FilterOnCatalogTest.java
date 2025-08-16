@@ -3,6 +3,8 @@ package tests;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import pages.CatalogPage;
 
 public class FilterOnCatalogTest extends BaseTest{
@@ -26,12 +28,16 @@ public class FilterOnCatalogTest extends BaseTest{
                 .checkListColorOnFilter();
     }
 
-    @Test
-    @DisplayName("Работа фильтра Бренды")
-    void shouldDisplayOnlySelectedBrands() {
+    @ParameterizedTest(name = "Работа фильтра {0} с опцией {1}")
+    @CsvSource({
+            "Бренды, Balenciaga",
+            "Категория, Джинсы",
+            "Размеры, 39",
+    })
+    void shouldDisplayOnlySelectedFilter(String filter, String option) {
         catalogPage.openCatalogPage()
-                .buttonFilterBrandsClick()
-                .selectOptionOnFilterBrands()
-                .checkResultSearchWithFilter();
+                .buttonFilterClick(filter)
+                .selectOptionOnFilter(option)
+                .checkResultSearchWithFilter(option);
     }
 }

@@ -38,7 +38,8 @@ public class CatalogPage {
             listSeasonOnFilter = $$("div.content-container").get(3).$$("div"),
             listShopOnFilter = $$("div.content-container").get(4).$$("div"),
             listColorOnFilter = $$("div.content-container").get(5).$$("div"),
-            selectOption = $$("span.el-checkbox__label");
+            selectOption = $$("span.el-checkbox__label"),
+            buttonsFilter = $$("div.fixed-title");
 
     @Step("Открываем страницу Каталога")
     public CatalogPage openCatalogPage() {
@@ -47,17 +48,18 @@ public class CatalogPage {
         return this;
     }
 
-    @Step("Выбираем Бренд в фильтре Бренды")
-    public CatalogPage selectOptionOnFilterBrands() {
-        selectOption.findBy(text("ASICS")).click();
+    @Step("Выбираем опцию фильтра")
+    public CatalogPage selectOptionOnFilter(String option) {
+        selectOption.findBy(text(option)).click();
 
         return this;
     }
 
     @Step("Проверяем результаты поиска по фильтру")
-    public CatalogPage checkResultSearchWithFilter() {
+    public CatalogPage checkResultSearchWithFilter(String option) {
+        itemsOnCatalog.get(0).shouldBe(visible).shouldHave(text(option));
         for (SelenideElement item : itemsOnCatalog) {
-            item.should(text("Puma"));
+            item.should(text(option));
         }
 
         return this;
@@ -150,6 +152,13 @@ public class CatalogPage {
     @Step("Жмем на кнопку Бренды в фильтрах")
     public CatalogPage buttonFilterBrandsClick() {
         buttonFilterBrands.click();
+
+        return this;
+    }
+
+    @Step("Жмем на кнопку фильтра")
+    public CatalogPage buttonFilterClick(String filter) {
+        buttonsFilter.findBy(text(filter)).click();
 
         return this;
     }
