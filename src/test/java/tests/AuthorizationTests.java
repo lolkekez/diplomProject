@@ -42,9 +42,9 @@ public class AuthorizationTests extends BaseTest {
     void validationEmailAndPasswordFieldsOnRegistrationModalTest() {
         mainPage.openMainPage()
                 .profileIconButtonClick();
-        authorizationModalComponent.setUncorrectedInputProfileEmail();
-        authorizationModalComponent.checkLoginConfirmButtonDisabled();
-        authorizationModalComponent.setUncorrectedInputProfilePassword()
+        authorizationModalComponent.setUncorrectedInputProfileEmail()
+                .checkLoginConfirmButtonDisabled()
+                .setUncorrectedInputProfilePassword()
                 .checkEmailFieldShouldHaveUncorrectedText()
                 .checkPasswordFieldShouldHaveUncorrectedText();
     }

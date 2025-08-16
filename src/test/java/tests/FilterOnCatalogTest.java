@@ -25,4 +25,13 @@ public class FilterOnCatalogTest extends BaseTest{
                 .buttonFilterColorClick()
                 .checkListColorOnFilter();
     }
+
+    @Test
+    @DisplayName("Работа фильтра Бренды")
+    void shouldDisplayOnlySelectedBrands() {
+        catalogPage.openCatalogPage()
+                .buttonFilterBrandsClick()
+                .selectOptionOnFilterBrands()
+                .checkResultSearchWithFilter();
+    }
 }

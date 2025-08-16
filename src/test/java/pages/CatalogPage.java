@@ -7,7 +7,7 @@ import com.github.javafaker.Cat;
 import io.qameta.allure.Step;
 import pages.components.filter.*;
 import utils.DataFaker;
-
+import static com.codeborne.selenide.Condition.matchText;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.*;
@@ -37,11 +37,28 @@ public class CatalogPage {
             listSizeOnFilter = $$("div.content-container").get(2).$$("div"),
             listSeasonOnFilter = $$("div.content-container").get(3).$$("div"),
             listShopOnFilter = $$("div.content-container").get(4).$$("div"),
-            listColorOnFilter = $$("div.content-container").get(5).$$("div");
+            listColorOnFilter = $$("div.content-container").get(5).$$("div"),
+            selectOption = $$("span.el-checkbox__label");
 
     @Step("Открываем страницу Каталога")
     public CatalogPage openCatalogPage() {
         open("/catalog");
+
+        return this;
+    }
+
+    @Step("Выбираем Бренд в фильтре Бренды")
+    public CatalogPage selectOptionOnFilterBrands() {
+        selectOption.findBy(text("ASICS")).click();
+
+        return this;
+    }
+
+    @Step("Проверяем результаты поиска по фильтру")
+    public CatalogPage checkResultSearchWithFilter() {
+        for (SelenideElement item : itemsOnCatalog) {
+            item.should(text("Puma"));
+        }
 
         return this;
     }
@@ -62,7 +79,7 @@ public class CatalogPage {
         return this;
     }
 
-    @Step("Проверем, что кнопка 'добавить в корзину' некликабельна")
+    @Step("Проверяем, что кнопка 'добавить в корзину' некликабельна")
     public CatalogPage checkAddCartButtonDisabled() {
         addCartButton.shouldBe(disabled);
 
