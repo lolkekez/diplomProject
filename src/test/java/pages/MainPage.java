@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.*;
+import com.mifmif.common.regex.Main;
 import io.qameta.allure.Step;
 import utils.DataFaker;
 
@@ -20,14 +21,71 @@ public class MainPage {
             showCatalogButton = $$("button[data-v-0f3c88d5]").find(text("ПОКАЗАТЬ ВСЕ НОВИНКИ")),
             tabNewItem = $$("label.el-radio-button").findBy(text("Новинки")),
             tabBestSellers = $$("label.el-radio-button").findBy(text("Хиты продаж")),
-            tabSale =  $$("label.el-radio-button").findBy(text("Распродажа"));
+            tabSale =  $$("label.el-radio-button").findBy(text("Распродажа")),
+            headerNews = $("div.news__title"),
+            deliveryInfo = $("div.delivery__info"),
+            headerDeliveryAndPayment = $("div.delivery__title"),
+            imgDelivery = $("img[alt='Image Delivery An dPayment']");
 
     private final ElementsCollection labelsOnItemCard = $$("div.product-slider-grid__row div.status-block"),
-            labelOnItemCardForSale = $$("div.card-catalog__content");
+            labelOnItemCardForSale = $$("div.card-catalog__content"),
+            newsItems = $$("div.news");
+
 
     @Step("Открываем главную страницу")
     public MainPage openMainPage() {
         open(baseUrl);
+
+        return this;
+    }
+
+    @Step("Проверяем, что отображаем заголовок над блоком Новости")
+    public MainPage checkHeaderNewsBlock() {
+        headerNews.shouldBe(visible);
+
+        return this;
+    }
+
+    @Step("Проверяем, что отображаем заголовок над блоком Доставка и Оплата")
+    public MainPage checkHeaderDeliveryAndPaymentBlock() {
+        headerDeliveryAndPayment.shouldBe(visible);
+
+        return this;
+    }
+
+    @Step("Проверяем, что отображаем информацию о доставке блоке Доставка и плата")
+    public MainPage checkDeliveryAndPaymentInfoText() {
+        deliveryInfo.shouldBe(visible);
+        deliveryInfo.shouldHave(text("СДЭК\n" +
+                "\n" +
+                "Самовывоз из ближайшего пункта выдачи или доставка курьером до двери. Стандартная доставка от 5 дней - от 550 рублей.\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "Почта РФ\n" +
+                "\n" +
+                "Самовывоз из ближайшего почтового отделения. Стандартная доставка от 5 дней - от 550 рублей. \n" +
+                "\n" +
+                "\n" +
+                "Самовывоз\n" +
+                "\n" +
+                "Самовывоз из ближайшего магазина - бесплатно, если товар есть в наличии в магазинах вашего города."));
+
+        return this;
+    }
+
+    @Step("Проверяем, что отображаем картинку в блоке Доставка и оплата")
+    public MainPage checkImgOnBlockDeliveryAndPayment() {
+        imgDelivery.shouldHave(attribute("src", "https://s3.krosspark.ru/media/upload/0194640c-54b4-71d3-90d6-99803db5e869.jpg"));
+
+        return this;
+    }
+
+    @Step("Проверяем, что отображаем новости в новостном блоке")
+    public MainPage newsItemsShouldBeVisible() {
+        for (SelenideElement newsItem : newsItems) {
+            newsItem.shouldBe(visible);
+        }
 
         return this;
     }
