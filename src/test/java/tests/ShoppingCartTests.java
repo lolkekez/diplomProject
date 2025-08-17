@@ -23,7 +23,6 @@ public class ShoppingCartTests extends BaseTest {
         mainPage.openMainPage();
         if (isAuthorized) {
             mainPage.profileIconButtonClick();
-
             authorizationModalComponent.setInputProfileModalEmail("4ybt2@somoj.com")
                     .setInputProfileModalPassword("Warcraft_Goblin331")
                     .loginConfirmButtonClick();
@@ -47,7 +46,6 @@ public class ShoppingCartTests extends BaseTest {
         mainPage.openMainPage();
         if (isAuthorized) {
             mainPage.profileIconButtonClick();
-
             authorizationModalComponent.setInputProfileModalEmail("4ybt2@somoj.com")
                     .setInputProfileModalPassword("Warcraft_Goblin331")
                     .loginConfirmButtonClick();
