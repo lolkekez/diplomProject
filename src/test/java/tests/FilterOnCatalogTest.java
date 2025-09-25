@@ -31,7 +31,7 @@ public class FilterOnCatalogTest extends BaseTest{
     @ParameterizedTest(name = "Работа фильтра {0} с опцией {1}")
     @CsvSource({
             "Бренды, Balenciaga",
-            "Категория, Джинсы",
+            "Категория, Джоггеры",
             "Размеры, 39",
     })
     void shouldDisplayOnlySelectedFilter(String filter, String option) {
